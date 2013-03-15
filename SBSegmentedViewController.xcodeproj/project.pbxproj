@@ -18,7 +18,6 @@
 		D2DDA70D16F3C75C003B0834 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA70C16F3C75C003B0834 /* Default-568h@2x.png */; };
 		D2DDA71B16F3C785003B0834 /* SBSegmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA71A16F3C785003B0834 /* SBSegmentedViewController.m */; };
 		D2DDA71D16F3CB15003B0834 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA71C16F3CB15003B0834 /* iPhone.storyboard */; };
-		D2DDA72016F3CD9F003B0834 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA71F16F3CD9F003B0834 /* DemoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +37,6 @@
 		D2DDA71916F3C785003B0834 /* SBSegmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSegmentedViewController.h; sourceTree = "<group>"; };
 		D2DDA71A16F3C785003B0834 /* SBSegmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSegmentedViewController.m; sourceTree = "<group>"; };
 		D2DDA71C16F3CB15003B0834 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		D2DDA71E16F3CD9F003B0834 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
-		D2DDA71F16F3CD9F003B0834 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +86,6 @@
 				D2DDA71916F3C785003B0834 /* SBSegmentedViewController.h */,
 				D2DDA71A16F3C785003B0834 /* SBSegmentedViewController.m */,
 				D2DDA71C16F3CB15003B0834 /* iPhone.storyboard */,
-				D2DDA71E16F3CD9F003B0834 /* DemoViewController.h */,
-				D2DDA71F16F3CD9F003B0834 /* DemoViewController.m */,
 				D2DDA6FD16F3C75C003B0834 /* Supporting Files */,
 			);
 			path = SBSegmentedViewController;
@@ -181,7 +176,6 @@
 				D2DDA70316F3C75C003B0834 /* main.m in Sources */,
 				D2DDA70716F3C75C003B0834 /* AppDelegate.m in Sources */,
 				D2DDA71B16F3C785003B0834 /* SBSegmentedViewController.m in Sources */,
-				D2DDA72016F3CD9F003B0834 /* DemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

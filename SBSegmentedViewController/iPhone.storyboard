@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Demo View Controller-->
+        <!--Segmented View Controller-->
         <scene sceneID="5pG-wd-w0a">
             <objects>
-                <viewController id="i20-LC-h8b" customClass="DemoViewController" sceneMemberID="viewController">
+                <viewController id="i20-LC-h8b" customClass="SBSegmentedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9nG-sm-Ime">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -39,8 +39,8 @@
         </scene>
     </scenes>
     <classes>
-        <class className="DemoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DemoViewController.h"/>
+        <class className="SBSegmentedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSegmentedViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
