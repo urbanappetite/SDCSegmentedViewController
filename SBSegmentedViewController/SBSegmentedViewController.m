@@ -8,9 +8,13 @@
 
 #import "SBSegmentedViewController.h"
 
+#define DEFAULT_SELECTED_INDEX 0
+
 @interface SBSegmentedViewController ()
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
+
+@property (nonatomic) NSInteger currentSelectedIndex;
 @end
 
 @implementation SBSegmentedViewController
@@ -19,6 +23,15 @@
 	if (!_viewControllers)
 		_viewControllers = [NSMutableArray array];
 	return _viewControllers;
+}
+
+- (void)setPosition:(SBSegmentedViewControllerControlPosition)position {
+	_position = position;
+	
+	if (!self.segmentedControl)
+		[self initiateSegmentedControlAtPosition:position];
+	else
+		[self moveControlToPosition:position];
 }
 
 - (id)initWithViewControllers:(NSArray *)viewControllers {
@@ -39,37 +52,53 @@
 			}
 		}];
 		
-		[self initiateSegmentedControl];
+		[self.view addSubview:((UIViewController *)viewControllers[DEFAULT_SELECTED_INDEX]).view];
 	}
 	
 	return self;
 }
 
-- (void)initiateSegmentedControl {
+- (void)initiateSegmentedControlAtPosition:(SBSegmentedViewControllerControlPosition)position {
 	
 	NSArray *segmentedControlItems = [self.viewControllers valueForKeyPath:@"@unionOfObjects.title"];
 	self.segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlItems];
-	self.segmentedControl.selectedSegmentIndex = 0;
+	self.segmentedControl.selectedSegmentIndex = DEFAULT_SELECTED_INDEX;
 	
-	[self.segmentedControl addTarget:self action:@selector(changeViewController) forControlEvents:UIControlEventValueChanged];
+	[self.segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
 	
-	switch (self.position) {
+	[self moveControlToPosition:position];
+}
+
+- (void)moveControlToPosition:(SBSegmentedViewControllerControlPosition)newPosition {
+	
+	switch (newPosition) {
 		case SBSegmentedViewControllerControlPositionNavigationBar:
 			self.navigationItem.titleView = self.segmentedControl;
 			break;
 		case SBSegmentedViewControllerControlPositionToolbar: {
 			
-			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+																					  target:nil
+																					  action:nil];
+			UIBarButtonItem *control = [[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl];
 			
-			self.toolbarItems = @[flexible, self.segmentedControl, flexible];
+			self.toolbarItems = @[flexible, control, flexible];
 			break;
 		}
-		default:
-			break;
 	}
 }
 
-- (void)changeViewController {
+- (void)changeViewController:(UISegmentedControl *)segmentedControl {
+	
+	[self transitionFromViewController:self.viewControllers[self.currentSelectedIndex]
+					  toViewController:self.viewControllers[segmentedControl.selectedSegmentIndex]
+							  duration:0
+							   options:UIViewAnimationOptionTransitionNone
+							animations:nil
+							completion:^(BOOL finished) {
+								if (finished)
+									self.currentSelectedIndex = segmentedControl.selectedSegmentIndex;
+							}];
 	
 }
 
