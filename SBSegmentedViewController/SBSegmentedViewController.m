@@ -39,23 +39,24 @@
 	self = [super init];
 	
 	if (self) {
-		
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			if ([obj isKindOfClass:[UIViewController class]]) {
-				
-				UIViewController *viewController = obj;
-				
-				[self addChildViewController:viewController];
-				[viewController didMoveToParentViewController:self];
-				
-				[self.viewControllers addObject:viewController];
-			}
+			if ([obj isKindOfClass:[UIViewController class]])
+				[self.viewControllers addObject:obj];
 		}];
-		
-		[self.view addSubview:((UIViewController *)viewControllers[DEFAULT_SELECTED_INDEX]).view];
 	}
 	
 	return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	
+	UIViewController *currentViewController = self.viewControllers[DEFAULT_SELECTED_INDEX];
+	[self addChildViewController:currentViewController];
+	
+	currentViewController.view.frame = self.view.frame;
+	[self.view addSubview:currentViewController.view];
+	
+	[currentViewController didMoveToParentViewController:self];
 }
 
 - (void)initiateSegmentedControlAtPosition:(SBSegmentedViewControllerControlPosition)position {
@@ -93,9 +94,14 @@
 
 - (void)changeViewController:(UISegmentedControl *)segmentedControl {
 	
-	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
+	UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
+	[oldViewController willMoveToParentViewController:nil];
 	
-	[self transitionFromViewController:self.viewControllers[self.currentSelectedIndex]
+	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
+	[self addChildViewController:newViewController];
+	newViewController.view.frame = self.view.frame;
+	
+	[self transitionFromViewController:oldViewController
 					  toViewController:newViewController
 							  duration:0
 							   options:UIViewAnimationOptionTransitionNone
