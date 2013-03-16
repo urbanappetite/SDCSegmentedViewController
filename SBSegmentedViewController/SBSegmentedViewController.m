@@ -12,6 +12,7 @@
 
 @interface SBSegmentedViewController ()
 @property (nonatomic, strong) NSMutableArray *viewControllers;
+@property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @property (nonatomic) NSInteger currentSelectedIndex;
@@ -25,6 +26,12 @@
 	return _viewControllers;
 }
 
+- (NSMutableArray *)titles {
+	if (!_titles)
+		_titles = [NSMutableArray array];
+	return _titles;
+}
+
 - (void)setPosition:(SBSegmentedViewControllerControlPosition)position {
 	_position = position;
 	
@@ -36,16 +43,27 @@
 
 - (id)initWithViewControllers:(NSArray *)viewControllers {
 	
+	NSArray *titles = [viewControllers valueForKeyPath:@"@unionOfObjects.title"];
+	
+	return [self initWithViewControllers:viewControllers titles:titles];
+}
+
+- (id)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles {
 	self = [super init];
 	
 	if (self) {
-		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			if ([obj isKindOfClass:[UIViewController class]])
-				[self.viewControllers addObject:obj];
+		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
+			if ([obj isKindOfClass:[UIViewController class]]) {
+				UIViewController *viewController = obj;
+				
+				[self.viewControllers addObject:viewController];
+				[self.titles addObject:titles[index]];
+			}
 		}];
 	}
 	
 	return self;
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,8 +79,7 @@
 
 - (void)initiateSegmentedControlAtPosition:(SBSegmentedViewControllerControlPosition)position {
 	
-	NSArray *segmentedControlItems = [self.viewControllers valueForKeyPath:@"@unionOfObjects.title"];
-	self.segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlItems];
+	self.segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
 	self.segmentedControl.selectedSegmentIndex = DEFAULT_SELECTED_INDEX;
 	
 	[self.segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];

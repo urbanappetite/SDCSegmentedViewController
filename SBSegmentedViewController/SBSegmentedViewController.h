@@ -21,4 +21,7 @@ typedef NS_ENUM(NSInteger, SBSegmentedViewControllerControlPosition) {
 // NSArray of UIViewController subclasses
 - (id)initWithViewControllers:(NSArray *)viewControllers;
 
+// Takes segmented control item titles separately from the view controllers
+- (id)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles;
+
 @end

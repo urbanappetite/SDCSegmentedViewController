@@ -24,7 +24,7 @@
 	
 	NSArray *vcs = @[red, green, blue];
 	
-	SBSegmentedViewController *segmentedViewController = [[SBSegmentedViewController alloc] initWithViewControllers:vcs];
+	SBSegmentedViewController *segmentedViewController = [[SBSegmentedViewController alloc] initWithViewControllers:vcs titles:@[@"First", @"Second", @"Third"]];
 	segmentedViewController.position = SBSegmentedViewControllerControlPositionNavigationBar;
 	segmentedViewController.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	
