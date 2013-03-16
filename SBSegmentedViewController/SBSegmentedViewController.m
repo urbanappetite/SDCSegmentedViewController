@@ -83,6 +83,9 @@
 			UIBarButtonItem *control = [[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl];
 			
 			self.toolbarItems = @[flexible, control, flexible];
+			
+			UIViewController *currentViewController = self.viewControllers[self.currentSelectedIndex];
+			self.title = currentViewController.title;
 			break;
 		}
 	}
@@ -90,14 +93,20 @@
 
 - (void)changeViewController:(UISegmentedControl *)segmentedControl {
 	
+	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
+	
 	[self transitionFromViewController:self.viewControllers[self.currentSelectedIndex]
-					  toViewController:self.viewControllers[segmentedControl.selectedSegmentIndex]
+					  toViewController:newViewController
 							  duration:0
 							   options:UIViewAnimationOptionTransitionNone
 							animations:nil
 							completion:^(BOOL finished) {
-								if (finished)
+								if (finished) {
 									self.currentSelectedIndex = segmentedControl.selectedSegmentIndex;
+									
+									if (self.position == SBSegmentedViewControllerControlPositionToolbar)
+										self.title = newViewController.title;
+								}
 							}];
 	
 }
