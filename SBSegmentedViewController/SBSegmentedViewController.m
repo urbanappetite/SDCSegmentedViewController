@@ -108,6 +108,9 @@
 							animations:nil
 							completion:^(BOOL finished) {
 								if (finished) {
+									
+									[newViewController didMoveToParentViewController:self];
+									
 									self.currentSelectedIndex = segmentedControl.selectedSegmentIndex;
 									
 									if (self.position == SBSegmentedViewControllerControlPositionToolbar)
