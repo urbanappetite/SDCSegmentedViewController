@@ -19,3 +19,7 @@ Note that since the segmented control can only be put in the `titleView` of a `U
 	// now do something with navigationController that puts it on screen, for example (in application:didFinishLaunchingWithOptions:):
 	
 	self.window.rootViewController = navigationController;
+
+## License
+
+The [MIT license] (http://opensource.org/licenses/MIT) applies to the code distributed in this repo.
