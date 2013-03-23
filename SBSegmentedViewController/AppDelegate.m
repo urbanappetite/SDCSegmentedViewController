@@ -30,7 +30,10 @@
 	
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:segmentedViewController];
 	
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.rootViewController = navigationController;
+	
+	[self.window makeKeyAndVisible];
 	
 	return YES;
 }

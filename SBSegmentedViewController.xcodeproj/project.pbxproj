@@ -306,6 +306,7 @@
 				D2DDA71816F3C75C003B0834 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
