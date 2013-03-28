@@ -32,20 +32,23 @@
 	return _titles;
 }
 
+- (UISegmentedControl *)segmentedControl {
+	if (!_segmentedControl) {
+		_segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
+		_segmentedControl.selectedSegmentIndex = DEFAULT_SELECTED_INDEX;
+		
+		[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
+	}
+	return _segmentedControl;
+}
+
 - (void)setPosition:(SBSegmentedViewControllerControlPosition)position {
 	_position = position;
-	
-	if (!self.segmentedControl)
-		[self initiateSegmentedControlAtPosition:position];
-	else
-		[self moveControlToPosition:position];
+	[self moveControlToPosition:position];
 }
 
 - (id)initWithViewControllers:(NSArray *)viewControllers {
-	
-	NSArray *titles = [viewControllers valueForKeyPath:@"@unionOfObjects.title"];
-	
-	return [self initWithViewControllers:viewControllers titles:titles];
+	return [self initWithViewControllers:viewControllers titles:[viewControllers valueForKeyPath:@"@unionOfObjects.title"]];
 }
 
 - (id)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles {
@@ -63,7 +66,6 @@
 	}
 	
 	return self;
-	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,16 +77,6 @@
 	[self.view addSubview:currentViewController.view];
 	
 	[currentViewController didMoveToParentViewController:self];
-}
-
-- (void)initiateSegmentedControlAtPosition:(SBSegmentedViewControllerControlPosition)position {
-	
-	self.segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
-	self.segmentedControl.selectedSegmentIndex = DEFAULT_SELECTED_INDEX;
-	
-	[self.segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
-	
-	[self moveControlToPosition:position];
 }
 
 - (void)moveControlToPosition:(SBSegmentedViewControllerControlPosition)newPosition {

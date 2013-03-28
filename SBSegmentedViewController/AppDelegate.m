@@ -25,10 +25,11 @@
 	NSArray *vcs = @[red, green, blue];
 	
 	SBSegmentedViewController *segmentedViewController = [[SBSegmentedViewController alloc] initWithViewControllers:vcs titles:@[@"First", @"Second", @"Third"]];
-	segmentedViewController.position = SBSegmentedViewControllerControlPositionNavigationBar;
 	segmentedViewController.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	segmentedViewController.position = SBSegmentedViewControllerControlPositionToolbar;
 	
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:segmentedViewController];
+	navigationController.toolbarHidden = NO;
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.rootViewController = navigationController;
