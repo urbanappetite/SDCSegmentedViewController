@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @property (nonatomic) NSInteger currentSelectedIndex;
+
+@property (nonatomic) BOOL hasAppeared;
 @end
 
 @implementation SBSegmentedViewController
@@ -69,14 +71,16 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	
-	UIViewController *currentViewController = self.viewControllers[DEFAULT_SELECTED_INDEX];
-	[self addChildViewController:currentViewController];
-	
-	currentViewController.view.frame = self.view.frame;
-	[self.view addSubview:currentViewController.view];
-	
-	[currentViewController didMoveToParentViewController:self];
+	if (!self.hasAppeared) {
+        self.hasAppeared = YES;
+        UIViewController *currentViewController = self.viewControllers[DEFAULT_SELECTED_INDEX];
+        [self addChildViewController:currentViewController];
+        
+        currentViewController.view.frame = self.view.frame;
+        [self.view addSubview:currentViewController.view];
+        
+        [currentViewController didMoveToParentViewController:self];
+    }
 }
 
 - (void)moveControlToPosition:(SBSegmentedViewControllerControlPosition)newPosition {
