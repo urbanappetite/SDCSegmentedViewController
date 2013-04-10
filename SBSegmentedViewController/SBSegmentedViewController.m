@@ -71,6 +71,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 	if (!self.hasAppeared) {
         self.hasAppeared = YES;
         UIViewController *currentViewController = self.viewControllers[DEFAULT_SELECTED_INDEX];
