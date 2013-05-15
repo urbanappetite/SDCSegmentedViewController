@@ -38,6 +38,7 @@
 	if (!_segmentedControl) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
 		_segmentedControl.selectedSegmentIndex = DEFAULT_SELECTED_INDEX;
+		_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		
 		[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
 	}
