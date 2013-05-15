@@ -57,6 +57,9 @@
 - (id)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles {
 	self = [super init];
 	
+	_viewControllers = [NSMutableArray array];
+	_titles = [NSMutableArray array];
+	
 	if (self) {
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
 			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count]) {
