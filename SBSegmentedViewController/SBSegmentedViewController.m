@@ -59,13 +59,18 @@
 	
 	if (self) {
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
-			if ([obj isKindOfClass:[UIViewController class]]) {
+			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count]) {
 				UIViewController *viewController = obj;
 				
-				[self.viewControllers addObject:viewController];
-				[self.titles addObject:titles[index]];
+				[_viewControllers addObject:viewController];
+				[_titles addObject:titles[index]];
 			}
 		}];
+		
+		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
+			self = nil;
+			NSLog(@"SBSegmentedViewController: Invalid configuration of view controllers and titles.");
+		}
 	}
 	
 	return self;
@@ -131,8 +136,7 @@
 									if (self.position == SBSegmentedViewControllerControlPositionToolbar)
 										self.title = newViewController.title;
 								}
-							}];
-	
+							}];	
 }
 
 @end
