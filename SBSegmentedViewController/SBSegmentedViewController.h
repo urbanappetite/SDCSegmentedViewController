@@ -19,9 +19,9 @@ typedef NS_ENUM(NSInteger, SBSegmentedViewControllerControlPosition) {
 @property (nonatomic) SBSegmentedViewControllerControlPosition position;
 
 // NSArray of UIViewController subclasses
-- (id)initWithViewControllers:(NSArray *)viewControllers;
+- (instancetype)initWithViewControllers:(NSArray *)viewControllers;
 
 // Takes segmented control item titles separately from the view controllers
-- (id)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles;
+- (instancetype)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles;
 
 @end
