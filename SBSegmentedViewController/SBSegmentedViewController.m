@@ -81,7 +81,7 @@
 			}
 		}];
 
-		if ([_viewControllers count] == 0 || ([_viewControllers count] != [_titles count])) {
+		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
 			self = nil;
 			NSLog(@"SBSegmentedViewController: Invalid configuration of view controllers and titles.");
 		}
@@ -168,11 +168,10 @@
 }
 
 - (void)updateBarsForViewController:(UIViewController *)viewController {
-	if (self.position == SBSegmentedViewControllerControlPositionToolbar) {
+	if (self.position == SBSegmentedViewControllerControlPositionToolbar)
 		self.title = viewController.title;
-	} else if (self.position == SBSegmentedViewControllerControlPositionNavigationBar) {
+	else if (self.position == SBSegmentedViewControllerControlPositionNavigationBar)
 		self.toolbarItems = viewController.toolbarItems;
-    }
 }
 
 #pragma mark - KVO
