@@ -100,7 +100,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
     
 	if (!self.hasAppeared) {
         self.hasAppeared = YES;
