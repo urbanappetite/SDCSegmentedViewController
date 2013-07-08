@@ -73,7 +73,7 @@
 
 	if (self) {
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
-			if ([obj isKindOfClass:[UIViewController class]] && index < titles.count) {
+			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count]) {
 				UIViewController *viewController = obj;
 
 				[_viewControllers addObject:viewController];
@@ -81,7 +81,7 @@
 			}
 		}];
 
-		if (_viewControllers.count == 0 || (_viewControllers.count != _titles.count)) {
+		if ([_viewControllers count] == 0 || ([_viewControllers count] != [_titles count])) {
 			self = nil;
 			NSLog(@"SBSegmentedViewController: Invalid configuration of view controllers and titles.");
 		}
