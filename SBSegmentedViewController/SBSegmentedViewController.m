@@ -8,8 +8,6 @@
 
 #import "SBSegmentedViewController.h"
 
-#define DEFAULT_SELECTED_INDEX 0
-
 @interface SBSegmentedViewController ()
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
@@ -43,7 +41,7 @@
 - (UISegmentedControl *)segmentedControl {
 	if (!_segmentedControl) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
-		_segmentedControl.selectedSegmentIndex = DEFAULT_SELECTED_INDEX;
+		_segmentedControl.selectedSegmentIndex = UISegmentedControlSegmentLeft;
 		_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 
 		[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
@@ -112,6 +110,32 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+#pragma mark - Content Management
+
+- (void)addViewController:(UIViewController *)viewController {
+	if (viewController && viewController.title)
+		[self addViewController:viewController withTitle:viewController.title];
+	else
+		NSLog(@"%@: Can't add view controller (%@) because no title was specified!", NSStringFromClass([self class]), viewController);
+}
+
+- (void)addViewController:(UIViewController *)viewController withTitle:(NSString *)title {
+	[self.viewControllers addObject:viewController];
+	[self.titles addObject:title];
+	
+	NSInteger newIndex = [self.titles indexOfObject:title];
+	[self.segmentedControl insertSegmentWithTitle:title atIndex:newIndex animated:YES];
+	
+	// If this was the first view controller we added, make it the selected one. We do this during lazy instantiation as well, but at that point setting it to the left most segment has no meaning, because there aren't any segments.
+	if (newIndex == 0)
+		self.segmentedControl.selectedSegmentIndex = newIndex;
+	
+	[self.segmentedControl sizeToFit];
+}
+
+>>>>>>> Set selected segment index when adding first view controller
 #pragma mark - View Controller Containment
 
 - (void)moveControlToPosition:(SBSegmentedViewControllerControlPosition)newPosition {
