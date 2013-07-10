@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2C61DB4178DB51800188615 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C61DB3178DB51800188615 /* Storyboard.storyboard */; };
+		D2C61DB7178DB54800188615 /* SBEmbeddedSegmentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C61DB6178DB54800188615 /* SBEmbeddedSegmentSegue.m */; };
 		D2DDA6F716F3C75C003B0834 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F616F3C75C003B0834 /* UIKit.framework */; };
 		D2DDA6F916F3C75C003B0834 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F816F3C75C003B0834 /* Foundation.framework */; };
 		D2DDA6FB16F3C75C003B0834 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6FA16F3C75C003B0834 /* CoreGraphics.framework */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D2C61DB3178DB51800188615 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		D2C61DB5178DB54800188615 /* SBEmbeddedSegmentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBEmbeddedSegmentSegue.h; sourceTree = "<group>"; };
+		D2C61DB6178DB54800188615 /* SBEmbeddedSegmentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBEmbeddedSegmentSegue.m; sourceTree = "<group>"; };
 		D2DDA6F316F3C75C003B0834 /* SBSegmentedViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBSegmentedViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DDA6F616F3C75C003B0834 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D2DDA6F816F3C75C003B0834 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +65,7 @@
 		D2DDA6EA16F3C75C003B0834 = {
 			isa = PBXGroup;
 			children = (
+				D2C61DB3178DB51800188615 /* Storyboard.storyboard */,
 				D2DDA6FC16F3C75C003B0834 /* SBSegmentedViewController */,
 				D2DDA6F516F3C75C003B0834 /* Frameworks */,
 				D2DDA6F416F3C75C003B0834 /* Products */,
@@ -87,6 +93,8 @@
 		D2DDA6FC16F3C75C003B0834 /* SBSegmentedViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D2C61DB5178DB54800188615 /* SBEmbeddedSegmentSegue.h */,
+				D2C61DB6178DB54800188615 /* SBEmbeddedSegmentSegue.m */,
 				D2DDA71916F3C785003B0834 /* SBSegmentedViewController.h */,
 				D2DDA71A16F3C785003B0834 /* SBSegmentedViewController.m */,
 				D2DDA72A16F42B6D003B0834 /* View Controllers */,
@@ -179,6 +187,7 @@
 				D2DDA72216F4251E003B0834 /* GreenViewController.xib in Resources */,
 				D2DDA72416F4257A003B0834 /* BlueViewController.xib in Resources */,
 				D2DDA72616F425AB003B0834 /* RedViewController.xib in Resources */,
+				D2C61DB4178DB51800188615 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +201,7 @@
 				D2DDA70316F3C75C003B0834 /* main.m in Sources */,
 				D2DDA70716F3C75C003B0834 /* AppDelegate.m in Sources */,
 				D2DDA71B16F3C785003B0834 /* SBSegmentedViewController.m in Sources */,
+				D2C61DB7178DB54800188615 /* SBEmbeddedSegmentSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

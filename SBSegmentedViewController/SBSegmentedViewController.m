@@ -8,6 +8,8 @@
 
 #import "SBSegmentedViewController.h"
 
+NSInteger const DefaultSegmentIndex = 0;
+
 @interface SBSegmentedViewController ()
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
@@ -41,7 +43,7 @@
 - (UISegmentedControl *)segmentedControl {
 	if (!_segmentedControl) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
-		_segmentedControl.selectedSegmentIndex = UISegmentedControlSegmentLeft;
+		_segmentedControl.selectedSegmentIndex = DefaultSegmentIndex;
 		_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 
 		[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
@@ -66,10 +68,11 @@
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles {
 	self = [super init];
 
-	_viewControllers = [NSMutableArray array];
-	_titles = [NSMutableArray array];
-
 	if (self) {
+		
+		_viewControllers = [NSMutableArray array];
+		_titles = [NSMutableArray array];
+		
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
 			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count]) {
 				UIViewController *viewController = obj;
@@ -96,6 +99,16 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
     
+	if ([self.viewControllers count] == 0)
+		[NSException raise:@"SBSegmentedViewControllerException" format:@"SBSegmentedViewController has no view controllers that it can display."];
+	
+	if (self.segmentedControl.selectedSegmentIndex == UISegmentedControlNoSegment) {
+		self.segmentedControl.selectedSegmentIndex = DefaultSegmentIndex;
+		self.currentSelectedIndex = DefaultSegmentIndex;
+	}
+	
+	[self observeViewController:self.viewControllers[self.currentSelectedIndex]];
+	
 	if (!self.hasAppeared) {
         self.hasAppeared = YES;
         UIViewController *currentViewController = self.viewControllers[self.currentSelectedIndex];
@@ -110,8 +123,11 @@
     }
 }
 
-<<<<<<< HEAD
-=======
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[self stopObservingViewController:self.viewControllers[self.currentSelectedIndex]];
+}
+
 #pragma mark - Content Management
 
 - (void)addViewController:(UIViewController *)viewController {
@@ -125,17 +141,13 @@
 	[self.viewControllers addObject:viewController];
 	[self.titles addObject:title];
 	
-	NSInteger newIndex = [self.titles indexOfObject:title];
-	[self.segmentedControl insertSegmentWithTitle:title atIndex:newIndex animated:YES];
-	
-	// If this was the first view controller we added, make it the selected one. We do this during lazy instantiation as well, but at that point setting it to the left most segment has no meaning, because there aren't any segments.
-	if (newIndex == 0)
-		self.segmentedControl.selectedSegmentIndex = newIndex;
+	// If the segmented control has not been instantiated yet, lazy instantiation will take care of inserting the first view controller, so no need to do it manually.
+	if (_segmentedControl)
+		[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
 	
 	[self.segmentedControl sizeToFit];
 }
 
->>>>>>> Set selected segment index when adding first view controller
 #pragma mark - View Controller Containment
 
 - (void)moveControlToPosition:(SBSegmentedViewControllerControlPosition)newPosition {
@@ -156,8 +168,10 @@
 		}
 	}
 
-	UIViewController *currentViewController = self.viewControllers[self.segmentedControl.selectedSegmentIndex];
-	[self updateBarsForViewController:currentViewController];
+	if ([self.viewControllers count] > 0) {
+		UIViewController *currentViewController = self.viewControllers[self.segmentedControl.selectedSegmentIndex];
+		[self updateBarsForViewController:currentViewController];
+	}
 }
 
 - (void)changeViewController:(UISegmentedControl *)segmentedControl {
@@ -208,10 +222,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	[self updateBarsForViewController:object];
-}
-
-- (void)dealloc {
-	[self stopObservingViewController:self.viewControllers[self.currentSelectedIndex]];
 }
 
 @end
