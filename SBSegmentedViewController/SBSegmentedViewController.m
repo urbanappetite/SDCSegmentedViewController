@@ -84,6 +84,9 @@
 		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
 			self = nil;
 			NSLog(@"SBSegmentedViewController: Invalid configuration of view controllers and titles.");
+		} else {
+			_currentSelectedIndex = DEFAULT_SELECTED_INDEX;
+			[self observeViewController:_viewControllers[_currentSelectedIndex]];
 		}
 	}
 
@@ -91,13 +94,6 @@
 }
 
 #pragma mark - View Controller Lifecycle
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-    
-	self.currentSelectedIndex = DEFAULT_SELECTED_INDEX;
-	[self observeViewController:self.viewControllers[self.currentSelectedIndex]];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
