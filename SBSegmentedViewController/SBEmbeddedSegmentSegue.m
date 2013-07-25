@@ -18,7 +18,7 @@
 	if (self) {
 	
 		if (![self.sourceViewController isKindOfClass:[SBSegmentedViewController class]]) {
-			NSLog(@"The source view controller for a %@ has to be a %@", NSStringFromClass([self class]), [SBSegmentedViewController class]);
+			NSLog(@"The source view controller for a %@ has to be a %@", NSStringFromClass([self class]), NSStringFromClass([SBSegmentedViewController class]));
 			return nil;
 		}
 		
