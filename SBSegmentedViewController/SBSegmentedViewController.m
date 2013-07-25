@@ -84,9 +84,9 @@ NSInteger const DefaultSegmentIndex = 0;
 
 		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
 			self = nil;
-			NSLog(@"SBSegmentedViewController: Invalid configuration of view controllers and titles.");
+			NSLog(@"%@: Invalid configuration of view controllers and titles.", NSStringFromClass([self class]));
 		} else {
-			_currentSelectedIndex = DEFAULT_SELECTED_INDEX;
+			_currentSelectedIndex = DefaultSegmentIndex;
 			[self observeViewController:_viewControllers[_currentSelectedIndex]];
 		}
 	}
