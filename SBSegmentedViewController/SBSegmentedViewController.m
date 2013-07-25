@@ -130,6 +130,12 @@ NSInteger const DefaultSegmentIndex = 0;
 
 #pragma mark - Content Management
 
+- (void)addStoryboardSegments:(NSArray *)segments {
+	[segments enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger idx, BOOL *stop) {
+		[self performSegueWithIdentifier:segment sender:self];
+	}];
+}
+
 - (void)addViewController:(UIViewController *)viewController {
 	if (viewController && viewController.title)
 		[self addViewController:viewController withTitle:viewController.title];
