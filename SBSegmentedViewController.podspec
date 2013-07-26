@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'SBSegmentedViewController'
-  s.version      = "1.0.3"
+  s.version      = "1.1"
   s.summary      = "Custom view controller container that uses a segmented control to switch between view controllers."
   s.homepage     = "https://github.com/Scott90/SBSegmentedViewController"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
