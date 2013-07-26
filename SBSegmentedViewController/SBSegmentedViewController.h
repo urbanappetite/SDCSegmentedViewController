@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef NS_ENUM
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+#endif
+
 typedef NS_ENUM(NSInteger, SBSegmentedViewControllerControlPosition) {
 	SBSegmentedViewControllerControlPositionNavigationBar,
 	SBSegmentedViewControllerControlPositionToolbar
