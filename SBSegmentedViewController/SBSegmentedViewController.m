@@ -79,15 +79,13 @@ NSInteger const DefaultSegmentIndex = 0;
 
 				[_viewControllers addObject:viewController];
 				[_titles addObject:titles[index]];
+				[self addChildViewController:viewController];
 			}
 		}];
 
 		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
 			self = nil;
 			NSLog(@"%@: Invalid configuration of view controllers and titles.", NSStringFromClass([self class]));
-		} else {
-			_currentSelectedIndex = DefaultSegmentIndex;
-			[self observeViewController:_viewControllers[_currentSelectedIndex]];
 		}
 	}
 
@@ -112,7 +110,6 @@ NSInteger const DefaultSegmentIndex = 0;
 	if (!self.hasAppeared) {
         self.hasAppeared = YES;
         UIViewController *currentViewController = self.viewControllers[self.currentSelectedIndex];
-        [self addChildViewController:currentViewController];
 
         currentViewController.view.frame = self.view.frame;
         [self.view addSubview:currentViewController.view];
@@ -146,6 +143,7 @@ NSInteger const DefaultSegmentIndex = 0;
 - (void)addViewController:(UIViewController *)viewController withTitle:(NSString *)title {
 	[self.viewControllers addObject:viewController];
 	[self.titles addObject:title];
+	[self addChildViewController:viewController];
 	
 	// If the segmented control has not been instantiated yet, lazy instantiation will take care of inserting the first view controller, so no need to do it manually.
 	if (_segmentedControl)
@@ -187,7 +185,6 @@ NSInteger const DefaultSegmentIndex = 0;
 	[self stopObservingViewController:oldViewController];
 
 	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
-	[self addChildViewController:newViewController];
 	newViewController.view.frame = self.view.frame;
 
 	[self transitionFromViewController:oldViewController
