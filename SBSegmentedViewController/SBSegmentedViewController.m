@@ -44,7 +44,9 @@ NSInteger const DefaultSegmentIndex = 0;
 	if (!_segmentedControl) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
 		_segmentedControl.selectedSegmentIndex = DefaultSegmentIndex;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
 		_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+#endif
 
 		[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
 	}
