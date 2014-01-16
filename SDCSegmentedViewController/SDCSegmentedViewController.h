@@ -1,6 +1,6 @@
 //
-//  SBSegmentedViewController.h
-//  SBSegmentedViewController
+//  SDCSegmentedViewController.h
+//  SDCSegmentedViewController
 //
 //  Created by Scott Berrevoets on 3/15/13.
 //  Copyright (c) 2013 Scotty Doesn't Code. All rights reserved.
@@ -12,15 +12,15 @@
 #define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
 #endif
 
-typedef NS_ENUM(NSInteger, SBSegmentedViewControllerControlPosition) {
-	SBSegmentedViewControllerControlPositionNavigationBar,
-	SBSegmentedViewControllerControlPositionToolbar
+typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
+	SDCSegmentedViewControllerControlPositionNavigationBar,
+	SDCSegmentedViewControllerControlPositionToolbar
 };
 
-@interface SBSegmentedViewController : UIViewController
+@interface SDCSegmentedViewController : UIViewController
 
 @property (nonatomic, readonly, strong) UISegmentedControl *segmentedControl;
-@property (nonatomic) SBSegmentedViewControllerControlPosition position;
+@property (nonatomic) SDCSegmentedViewControllerControlPosition position;
 
 // NSArray of UIViewController subclasses
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;

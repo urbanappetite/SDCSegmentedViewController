@@ -1,16 +1,16 @@
 //
-//  SBSegmentedViewController.m
-//  SBSegmentedViewController
+//  SDCSegmentedViewController.m
+//  SDCSegmentedViewController
 //
 //  Created by Scott Berrevoets on 3/15/13.
 //  Copyright (c) 2013 Scotty Doesn't Code. All rights reserved.
 //
 
-#import "SBSegmentedViewController.h"
+#import "SDCSegmentedViewController.h"
 
 NSInteger const DefaultSegmentIndex = 0;
 
-@interface SBSegmentedViewController ()
+@interface SDCSegmentedViewController ()
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) NSMutableArray *titles;
@@ -22,7 +22,7 @@ NSInteger const DefaultSegmentIndex = 0;
 
 @end
 
-@implementation SBSegmentedViewController
+@implementation SDCSegmentedViewController
 
 #pragma mark - Custom Getters
 
@@ -56,7 +56,7 @@ NSInteger const DefaultSegmentIndex = 0;
 
 #pragma mark - Custom Setter
 
-- (void)setPosition:(SBSegmentedViewControllerControlPosition)position {
+- (void)setPosition:(SDCSegmentedViewControllerControlPosition)position {
 	_position = position;
 	[self moveControlToPosition:position];
 }
@@ -100,7 +100,7 @@ NSInteger const DefaultSegmentIndex = 0;
 	[super viewWillAppear:animated];
     
 	if ([self.viewControllers count] == 0)
-		[NSException raise:@"SBSegmentedViewControllerException" format:@"SBSegmentedViewController has no view controllers that it can display."];
+		[NSException raise:@"SDCSegmentedViewControllerException" format:@"SDCSegmentedViewController has no view controllers that it can display."];
 	
 	if (self.segmentedControl.selectedSegmentIndex == UISegmentedControlNoSegment) {
 		self.segmentedControl.selectedSegmentIndex = DefaultSegmentIndex;
@@ -156,13 +156,13 @@ NSInteger const DefaultSegmentIndex = 0;
 
 #pragma mark - View Controller Containment
 
-- (void)moveControlToPosition:(SBSegmentedViewControllerControlPosition)newPosition {
+- (void)moveControlToPosition:(SDCSegmentedViewControllerControlPosition)newPosition {
 
 	switch (newPosition) {
-		case SBSegmentedViewControllerControlPositionNavigationBar:
+		case SDCSegmentedViewControllerControlPositionNavigationBar:
 			self.navigationItem.titleView = self.segmentedControl;
 			break;
-		case SBSegmentedViewControllerControlPositionToolbar: {
+		case SDCSegmentedViewControllerControlPositionToolbar: {
 			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
 																					  target:nil
 																					  action:nil];
@@ -207,9 +207,9 @@ NSInteger const DefaultSegmentIndex = 0;
 }
 
 - (void)updateBarsForViewController:(UIViewController *)viewController {
-	if (self.position == SBSegmentedViewControllerControlPositionToolbar)
+	if (self.position == SDCSegmentedViewControllerControlPositionToolbar)
 		self.title = viewController.title;
-	else if (self.position == SBSegmentedViewControllerControlPositionNavigationBar)
+	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
 		self.toolbarItems = viewController.toolbarItems;
 }
 

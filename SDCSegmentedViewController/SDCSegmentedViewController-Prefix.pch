@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'SBSegmentedViewController' target in the 'SBSegmentedViewController' project
+// Prefix header for all source files of the 'SDCSegmentedViewController' target in the 'SDCSegmentedViewController' project
 //
 
 #import <Availability.h>
