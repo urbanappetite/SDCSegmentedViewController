@@ -140,7 +140,9 @@ NSInteger const DefaultSegmentIndex = 0;
 - (void)adjustScrollViewInsets:(UIViewController *)viewController {
 	if ([viewController.view isKindOfClass:[UIScrollView class]] && viewController.automaticallyAdjustsScrollViewInsets) {
 		UIScrollView *scrollView = (UIScrollView *)viewController.view;
-		scrollView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+		UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+		scrollView.contentInset = insets;
+		scrollView.scrollIndicatorInsets = insets;
 	}
 }
 
