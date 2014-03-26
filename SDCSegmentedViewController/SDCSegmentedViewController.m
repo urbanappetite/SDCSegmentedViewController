@@ -240,8 +240,8 @@ NSInteger const DefaultSegmentIndex = 0;
 }
 
 - (void)stopObservingViewController:(UIViewController *)viewController {
-	[self.viewControllers[self.currentSelectedIndex] removeObserver:self forKeyPath:@"title"];
-	[self.viewControllers[self.currentSelectedIndex] removeObserver:self forKeyPath:@"toolbarItems"];
+	[viewController removeObserver:self forKeyPath:@"title"];
+	[viewController removeObserver:self forKeyPath:@"toolbarItems"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
