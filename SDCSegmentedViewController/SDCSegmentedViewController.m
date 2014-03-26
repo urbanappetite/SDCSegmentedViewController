@@ -30,14 +30,14 @@ NSInteger const DefaultSegmentIndex = 0;
 	if (!_viewControllers)
 		_viewControllers = [NSMutableArray array];
     
-	return _viewControllers;
+    return _viewControllers;
 }
 
 - (NSMutableArray *)titles {
 	if (!_titles)
 		_titles = [NSMutableArray array];
     
-	return _titles;
+    return _titles;
 }
 
 - (UISegmentedControl *)segmentedControl {
@@ -198,7 +198,7 @@ NSInteger const DefaultSegmentIndex = 0;
 	
 	// If the segmented control has not been instantiated yet, lazy instantiation will take care of inserting the first view controller, so no need to do it manually.
 	if (_segmentedControl)
-		[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
+	[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
 	
 	[self.segmentedControl sizeToFit];
 	
@@ -207,9 +207,9 @@ NSInteger const DefaultSegmentIndex = 0;
 
 - (void)changeViewController:(UISegmentedControl *)segmentedControl {
 	
-	UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
-	[oldViewController willMoveToParentViewController:nil];
-	[self stopObservingViewController:oldViewController];
+		UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
+		[oldViewController willMoveToParentViewController:nil];
+		[self stopObservingViewController:oldViewController];
 	
 	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
 	newViewController.view.frame = self.view.frame;
@@ -245,6 +245,7 @@ NSInteger const DefaultSegmentIndex = 0;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	[self updateBarsForViewController:object];
 }
 
