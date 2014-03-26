@@ -8,53 +8,26 @@
 
 #import "SDCSegmentedViewController.h"
 
-NSInteger const DefaultSegmentIndex = 0;
-
 @interface SDCSegmentedViewController ()
-
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) NSMutableArray *titles;
-@property (nonatomic, strong) UISegmentedControl *segmentedControl;
-
 @property (nonatomic) NSInteger currentSelectedIndex;
-
-@property (nonatomic) BOOL hasAppeared;
-
 @end
 
 @implementation SDCSegmentedViewController
 
-#pragma mark - Custom Getters
-
 - (NSMutableArray *)viewControllers {
 	if (!_viewControllers)
 		_viewControllers = [NSMutableArray array];
-    
     return _viewControllers;
 }
 
 - (NSMutableArray *)titles {
 	if (!_titles)
 		_titles = [NSMutableArray array];
-    
     return _titles;
 }
-
-- (UISegmentedControl *)segmentedControl {
-	if (!_segmentedControl) {
-		_segmentedControl = [[UISegmentedControl alloc] initWithItems:self.titles];
-		_segmentedControl.selectedSegmentIndex = DefaultSegmentIndex;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
-		_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-#endif
-		
-		[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
-	}
-    
-	return _segmentedControl;
-}
-
-#pragma mark - Custom Setter
 
 - (void)setPosition:(SDCSegmentedViewControllerControlPosition)position {
 	_position = position;
@@ -71,18 +44,15 @@ NSInteger const DefaultSegmentIndex = 0;
 	self = [super init];
 	
 	if (self) {
+		[self createSegmentedControl];
 		
+		_currentSelectedIndex = UISegmentedControlNoSegment;
 		_viewControllers = [NSMutableArray array];
 		_titles = [NSMutableArray array];
 		
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
-			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count]) {
-				UIViewController *viewController = obj;
-				
-				[_viewControllers addObject:viewController];
-				[_titles addObject:titles[index]];
-				[self addChildViewController:viewController];
-			}
+			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count])
+				[self addViewController:obj withTitle:titles[index]];
 		}];
 		
 		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
@@ -94,6 +64,19 @@ NSInteger const DefaultSegmentIndex = 0;
 	return self;
 }
 
+- (void)createSegmentedControl {
+	_segmentedControl = [[UISegmentedControl alloc] initWithItems:nil];
+	[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+	_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+#endif
+}
+
+- (void)awakeFromNib {
+	[self createSegmentedControl];
+	_currentSelectedIndex = UISegmentedControlNoSegment;
+}
+
 #pragma mark - View Controller Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,25 +85,8 @@ NSInteger const DefaultSegmentIndex = 0;
 	if ([self.viewControllers count] == 0)
 		[NSException raise:@"SDCSegmentedViewControllerException" format:@"SDCSegmentedViewController has no view controllers that it can display."];
 	
-	if (self.segmentedControl.selectedSegmentIndex == UISegmentedControlNoSegment) {
-		self.segmentedControl.selectedSegmentIndex = DefaultSegmentIndex;
-		self.currentSelectedIndex = DefaultSegmentIndex;
-	}
-	
-	[self observeViewController:self.viewControllers[self.currentSelectedIndex]];
-	
-	if (!self.hasAppeared) {
-        self.hasAppeared = YES;
-        UIViewController *currentViewController = self.viewControllers[self.currentSelectedIndex];
-		
-        currentViewController.view.frame = self.view.frame;
-        [self.view addSubview:currentViewController.view];
-		[self adjustScrollViewInsets:currentViewController];
-		
-        [currentViewController didMoveToParentViewController:self];
-		
-		[self updateBarsForViewController:currentViewController];
-    }
+	if (self.currentSelectedIndex == UISegmentedControlNoSegment)
+		[self showFirstViewController];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -147,27 +113,21 @@ NSInteger const DefaultSegmentIndex = 0;
 }
 
 - (void)moveControlToPosition:(SDCSegmentedViewControllerControlPosition)newPosition {
-	
 	switch (newPosition) {
 		case SDCSegmentedViewControllerControlPositionNavigationBar:
 			self.navigationItem.titleView = self.segmentedControl;
 			break;
 		case SDCSegmentedViewControllerControlPositionToolbar: {
-			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-																					  target:nil
-																					  action:nil];
+			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 			UIBarButtonItem *control = [[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl];
 			
 			self.toolbarItems = @[flexible, control, flexible];
-			
 			break;
 		}
 	}
 	
-	if ([self.viewControllers count] > 0) {
-		UIViewController *currentViewController = self.viewControllers[self.segmentedControl.selectedSegmentIndex];
-		[self updateBarsForViewController:currentViewController];
-	}
+	if ([self.viewControllers count] > 0)
+		[self updateBarsForViewController:self.viewControllers[self.segmentedControl.selectedSegmentIndex]];
 }
 
 - (void)updateBarsForViewController:(UIViewController *)viewController {
@@ -195,42 +155,55 @@ NSInteger const DefaultSegmentIndex = 0;
 - (void)addViewController:(UIViewController *)viewController withTitle:(NSString *)title {
 	[self.viewControllers addObject:viewController];
 	[self.titles addObject:title];
-	
 	[self addChildViewController:viewController];
 	
-	// If the segmented control has not been instantiated yet, lazy instantiation will take care of inserting the first view controller, so no need to do it manually.
-	if (_segmentedControl)
 	[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
-	
 	[self.segmentedControl sizeToFit];
-	
 }
 
+#pragma mark - View Controller Transitioning
 
-- (void)changeViewController:(UISegmentedControl *)segmentedControl {
+- (void)showFirstViewController {
+	UIViewController *firstViewController = [self.viewControllers firstObject];
+	[self.view addSubview:firstViewController.view];
 	
+	[self willTransitionToViewController:firstViewController];
+	[self didTransitionToViewController:firstViewController];
+}
+
+- (void)willTransitionToViewController:(UIViewController *)viewController {
+	if (self.currentSelectedIndex != UISegmentedControlNoSegment) {
 		UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
 		[oldViewController willMoveToParentViewController:nil];
 		[self stopObservingViewController:oldViewController];
+	}
 	
+	viewController.view.frame = self.view.frame;
+	[self adjustScrollViewInsets:viewController];
+}
+
+- (void)didTransitionToViewController:(UIViewController *)viewController {
+	[viewController didMoveToParentViewController:self];
+	[self updateBarsForViewController:viewController];
+	[self observeViewController:viewController];
+	
+	self.segmentedControl.selectedSegmentIndex = [self.viewControllers indexOfObject:viewController];
+	self.currentSelectedIndex = [self.viewControllers indexOfObject:viewController];
+}
+
+- (void)changeViewController:(UISegmentedControl *)segmentedControl {
+	UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
 	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
-	newViewController.view.frame = self.view.frame;
-	[self adjustScrollViewInsets:newViewController];
 	
+	[self willTransitionToViewController:newViewController];
 	[self transitionFromViewController:oldViewController
 					  toViewController:newViewController
 							  duration:0
 							   options:UIViewAnimationOptionTransitionNone
 							animations:nil
 							completion:^(BOOL finished) {
-								if (finished) {
-									[newViewController didMoveToParentViewController:self];
-									
-									[self updateBarsForViewController:newViewController];
-									[self observeViewController:newViewController];
-									
-									self.currentSelectedIndex = segmentedControl.selectedSegmentIndex;
-								}
+								if (finished)
+									[self didTransitionToViewController:newViewController];
 							}];
 }
 
