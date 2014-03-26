@@ -47,7 +47,7 @@ NSInteger const DefaultSegmentIndex = 0;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
 		_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 #endif
-
+		
 		[_segmentedControl addTarget:self action:@selector(changeViewController:) forControlEvents:UIControlEventValueChanged];
 	}
     
@@ -69,7 +69,7 @@ NSInteger const DefaultSegmentIndex = 0;
 
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers titles:(NSArray *)titles {
 	self = [super init];
-
+	
 	if (self) {
 		
 		_viewControllers = [NSMutableArray array];
@@ -78,19 +78,19 @@ NSInteger const DefaultSegmentIndex = 0;
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
 			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count]) {
 				UIViewController *viewController = obj;
-
+				
 				[_viewControllers addObject:viewController];
 				[_titles addObject:titles[index]];
 				[self addChildViewController:viewController];
 			}
 		}];
-
+		
 		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
 			self = nil;
 			NSLog(@"%@: Invalid configuration of view controllers and titles.", NSStringFromClass([self class]));
 		}
 	}
-
+	
 	return self;
 }
 
@@ -112,14 +112,22 @@ NSInteger const DefaultSegmentIndex = 0;
 	if (!self.hasAppeared) {
         self.hasAppeared = YES;
         UIViewController *currentViewController = self.viewControllers[self.currentSelectedIndex];
-
+		
         currentViewController.view.frame = self.view.frame;
         [self.view addSubview:currentViewController.view];
-
+		[self adjustScrollViewInsets:currentViewController];
+		
         [currentViewController didMoveToParentViewController:self];
-
+		
 		[self updateBarsForViewController:currentViewController];
     }
+}
+
+- (void)viewWillLayoutSubviews {
+	[super viewWillLayoutSubviews];
+	
+	UIViewController *childViewController = self.viewControllers[self.currentSelectedIndex];
+	[self adjustScrollViewInsets:childViewController];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -127,7 +135,47 @@ NSInteger const DefaultSegmentIndex = 0;
 	[self stopObservingViewController:self.viewControllers[self.currentSelectedIndex]];
 }
 
-#pragma mark - Content Management
+#pragma mark - View Management
+
+- (void)adjustScrollViewInsets:(UIViewController *)viewController {
+	if ([viewController.view isKindOfClass:[UIScrollView class]] && viewController.automaticallyAdjustsScrollViewInsets) {
+		UIScrollView *scrollView = (UIScrollView *)viewController.view;
+		scrollView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+	}
+}
+
+- (void)moveControlToPosition:(SDCSegmentedViewControllerControlPosition)newPosition {
+	
+	switch (newPosition) {
+		case SDCSegmentedViewControllerControlPositionNavigationBar:
+			self.navigationItem.titleView = self.segmentedControl;
+			break;
+		case SDCSegmentedViewControllerControlPositionToolbar: {
+			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+																					  target:nil
+																					  action:nil];
+			UIBarButtonItem *control = [[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl];
+			
+			self.toolbarItems = @[flexible, control, flexible];
+			
+			break;
+		}
+	}
+	
+	if ([self.viewControllers count] > 0) {
+		UIViewController *currentViewController = self.viewControllers[self.segmentedControl.selectedSegmentIndex];
+		[self updateBarsForViewController:currentViewController];
+	}
+}
+
+- (void)updateBarsForViewController:(UIViewController *)viewController {
+	if (self.position == SDCSegmentedViewControllerControlPositionToolbar)
+		self.title = viewController.title;
+	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
+		self.toolbarItems = viewController.toolbarItems;
+}
+
+#pragma mark - View Controller Containment
 
 - (void)addStoryboardSegments:(NSArray *)segments {
 	[segments enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger idx, BOOL *stop) {
@@ -145,6 +193,7 @@ NSInteger const DefaultSegmentIndex = 0;
 - (void)addViewController:(UIViewController *)viewController withTitle:(NSString *)title {
 	[self.viewControllers addObject:viewController];
 	[self.titles addObject:title];
+	
 	[self addChildViewController:viewController];
 	
 	// If the segmented control has not been instantiated yet, lazy instantiation will take care of inserting the first view controller, so no need to do it manually.
@@ -152,43 +201,20 @@ NSInteger const DefaultSegmentIndex = 0;
 		[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
 	
 	[self.segmentedControl sizeToFit];
+	
 }
 
-#pragma mark - View Controller Containment
-
-- (void)moveControlToPosition:(SDCSegmentedViewControllerControlPosition)newPosition {
-
-	switch (newPosition) {
-		case SDCSegmentedViewControllerControlPositionNavigationBar:
-			self.navigationItem.titleView = self.segmentedControl;
-			break;
-		case SDCSegmentedViewControllerControlPositionToolbar: {
-			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-																					  target:nil
-																					  action:nil];
-			UIBarButtonItem *control = [[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl];
-
-			self.toolbarItems = @[flexible, control, flexible];
-
-			break;
-		}
-	}
-
-	if ([self.viewControllers count] > 0) {
-		UIViewController *currentViewController = self.viewControllers[self.segmentedControl.selectedSegmentIndex];
-		[self updateBarsForViewController:currentViewController];
-	}
-}
 
 - (void)changeViewController:(UISegmentedControl *)segmentedControl {
-
+	
 	UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
 	[oldViewController willMoveToParentViewController:nil];
 	[self stopObservingViewController:oldViewController];
-
+	
 	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
 	newViewController.view.frame = self.view.frame;
-
+	[self adjustScrollViewInsets:newViewController];
+	
 	[self transitionFromViewController:oldViewController
 					  toViewController:newViewController
 							  duration:0
@@ -197,20 +223,13 @@ NSInteger const DefaultSegmentIndex = 0;
 							completion:^(BOOL finished) {
 								if (finished) {
 									[newViewController didMoveToParentViewController:self];
-
+									
 									[self updateBarsForViewController:newViewController];
 									[self observeViewController:newViewController];
-
+									
 									self.currentSelectedIndex = segmentedControl.selectedSegmentIndex;
 								}
 							}];
-}
-
-- (void)updateBarsForViewController:(UIViewController *)viewController {
-	if (self.position == SDCSegmentedViewControllerControlPositionToolbar)
-		self.title = viewController.title;
-	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
-		self.toolbarItems = viewController.toolbarItems;
 }
 
 #pragma mark - KVO
