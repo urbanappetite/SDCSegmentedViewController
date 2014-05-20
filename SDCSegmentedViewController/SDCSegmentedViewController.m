@@ -85,8 +85,10 @@
 	if ([self.viewControllers count] == 0)
 		[NSException raise:@"SDCSegmentedViewControllerException" format:@"SDCSegmentedViewController has no view controllers that it can display."];
 	
-	if (self.currentSelectedIndex == UISegmentedControlNoSegment)
-		[self showFirstViewController];
+    if (self.currentSelectedIndex == UISegmentedControlNoSegment) [self showFirstViewController];
+    else if (self.currentSelectedIndex < [self.viewControllers count] && [self.viewControllers[self.currentSelectedIndex] observationInfo] != (__bridge void *)([NSNull null])) {
+        [self observeViewController:self.viewControllers[self.currentSelectedIndex]];
+    }
 }
 
 - (void)viewWillLayoutSubviews {
