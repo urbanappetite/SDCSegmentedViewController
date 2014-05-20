@@ -11,15 +11,15 @@ SDCSegmentedViewController
 
 Follow these steps to instantiate `SDCSegmentedViewController` from a storyboard:
 
- 1. Drag out a view controller and set its class to `SDCSegmentedViewController`
- 2. Embed the `SDCSegmentedViewController` in a navigation controller
- 2. Drag out more view controllers that you want as part of `SDCSegmentedViewController`
- 3. Fill in all the view controllers' `title` properties in the storyboard. This is a requirement, as the title attribute is used for setting the segment's title.
- 4. Control-drag from the `SDCSegmentedViewController` scene to a view controller that you created in step 2
- 5. Choose the **embedded segment** segue. This is a custom segue that's very similar to the embedded segue introduced in iOS 6.
- 6. Give the segue an identifier
- 7. Repeat steps 4-6 for all the view controllers you added in step 2
- 8. Call `-[SDCSegmentedViewController addStoryboardSegments:]` passing in an `NSArray` of `NSString`s that match the segue identifiers
+ 1. Drag out a view controller and set its class to `SDCSegmentedViewController`
+ 2. Embed the `SDCSegmentedViewController` in a navigation controller
+ 3. Drag out more view controllers that you want as part of `SDCSegmentedViewController`
+ 4. Fill in all the view controllers' `title` properties in the storyboard. This is a requirement, as the title attribute is used for setting the segment's title.
+ 5. Control-drag from the `SDCSegmentedViewController` scene to a view controller that you created in step 2
+ 6. Choose the **embedded segment** segue. This is a custom segue that's very similar to the embedded segue introduced in iOS 6.
+ 7. Give the segue an identifier
+ 8. Repeat steps 4-6 for all the view controllers you added in step 2
+ 9. Call `-[SDCSegmentedViewController addStoryboardSegments:]` passing in an `NSArray` of `NSString`s that match the segue identifiers
 
 ### Programmatically
 
