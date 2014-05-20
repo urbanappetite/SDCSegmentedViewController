@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2C44770192BE41800885D17 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D2C4476E192BE41800885D17 /* LICENSE */; };
+		D2C44771192BE41800885D17 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D2C4476F192BE41800885D17 /* README.md */; };
 		D2C61DB7178DB54800188615 /* SDCEmbeddedSegmentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C61DB6178DB54800188615 /* SDCEmbeddedSegmentSegue.m */; };
 		D2CECA7F17A172F600780CD9 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CECA7E17A172F600780CD9 /* Storyboard.storyboard */; };
 		D2CECA8217A1734300780CD9 /* SDCIntermediateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CECA8117A1734300780CD9 /* SDCIntermediateViewController.m */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D2C4476E192BE41800885D17 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D2C4476F192BE41800885D17 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D2C61DB5178DB54800188615 /* SDCEmbeddedSegmentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCEmbeddedSegmentSegue.h; sourceTree = "<group>"; };
 		D2C61DB6178DB54800188615 /* SDCEmbeddedSegmentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCEmbeddedSegmentSegue.m; sourceTree = "<group>"; };
 		D2CECA7E17A172F600780CD9 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 		D2DDA6EA16F3C75C003B0834 = {
 			isa = PBXGroup;
 			children = (
+				D2C4476E192BE41800885D17 /* LICENSE */,
+				D2C4476F192BE41800885D17 /* README.md */,
 				D2DDA6FC16F3C75C003B0834 /* SDCSegmentedViewController */,
 				D2DDA6F516F3C75C003B0834 /* Frameworks */,
 				D2DDA6F416F3C75C003B0834 /* Products */,
@@ -168,8 +174,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2C44770192BE41800885D17 /* LICENSE in Resources */,
 				D2DDA70116F3C75C003B0834 /* InfoPlist.strings in Resources */,
 				D2DDA70916F3C75C003B0834 /* Default.png in Resources */,
+				D2C44771192BE41800885D17 /* README.md in Resources */,
 				D2DDA70B16F3C75C003B0834 /* Default@2x.png in Resources */,
 				D2DDA70D16F3C75C003B0834 /* Default-568h@2x.png in Resources */,
 				D2CECA7F17A172F600780CD9 /* Storyboard.storyboard in Resources */,
