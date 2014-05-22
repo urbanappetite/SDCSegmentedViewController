@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Scott Berrevoets" => "s.berrevoets@me.com" }
   s.source       = { :git => "https://github.com/Scott90/SDCSegmentedViewController.git", :tag => "v#{s.version}" }
-  s.source_files = 'SDCSegmentedViewController/SDCSegmentedViewController.*', 'SDCSegmentedViewController/SDCEmbeddedSegmentSegue.*'
+  s.source_files = 'SDCSegmentedViewController/Source/*.{h,m}'
   s.platform     = :ios, '5.0'
   s.requires_arc = true
 end
