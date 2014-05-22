@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D2B94466192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */; };
 		D2B94467192E5D8E000FD2A1 /* SDCSegmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94465192E5D8E000FD2A1 /* SDCSegmentedViewController.m */; };
+		D2B94469192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */; };
 		D2C44770192BE41800885D17 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D2C4476E192BE41800885D17 /* LICENSE */; };
 		D2C44771192BE41800885D17 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D2C4476F192BE41800885D17 /* README.md */; };
 		D2CECA7F17A172F600780CD9 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CECA7E17A172F600780CD9 /* Storyboard.storyboard */; };
@@ -29,6 +30,7 @@
 		D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCEmbeddedSegmentSegue.m; sourceTree = "<group>"; };
 		D2B94464192E5D8E000FD2A1 /* SDCSegmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCSegmentedViewController.h; sourceTree = "<group>"; };
 		D2B94465192E5D8E000FD2A1 /* SDCSegmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCSegmentedViewController.m; sourceTree = "<group>"; };
+		D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SDCSegmentedViewController.podspec; sourceTree = "<group>"; };
 		D2C4476E192BE41800885D17 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D2C4476F192BE41800885D17 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D2CECA7E17A172F600780CD9 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				D2C4476E192BE41800885D17 /* LICENSE */,
 				D2C4476F192BE41800885D17 /* README.md */,
+				D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */,
 				D2DDA6FC16F3C75C003B0834 /* SDCSegmentedViewController */,
 				D2DDA6F516F3C75C003B0834 /* Frameworks */,
 				D2DDA6F416F3C75C003B0834 /* Products */,
@@ -189,6 +192,7 @@
 				D2DDA70B16F3C75C003B0834 /* Default@2x.png in Resources */,
 				D2DDA70D16F3C75C003B0834 /* Default-568h@2x.png in Resources */,
 				D2CECA7F17A172F600780CD9 /* Storyboard.storyboard in Resources */,
+				D2B94469192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
