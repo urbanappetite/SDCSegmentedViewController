@@ -89,6 +89,8 @@
 		[self showFirstViewController];
 	else if (self.currentSelectedIndex < [self.viewControllers count])
 		[self observeViewController:self.viewControllers[self.currentSelectedIndex]];
+	
+	[self moveControlToPosition:self.position];
 }
 
 - (void)viewWillLayoutSubviews {

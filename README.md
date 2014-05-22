@@ -5,7 +5,7 @@ SDCSegmentedViewController
 
 ## Use
 
-`SDCSegmentedViewController` is very easy to use, and can be set up either using a storyboard or programmatically. It sets up a container view controller that switches between its child view controllers with a `UISegmentedControl`. The segmented control can be placed in either the navigation bar or the toolbar of the navigation controller that contains `SDCSegmentedViewController`. This position can be set using the `position` property (for which the options are `SDCSegmentedViewControllerPositionNavigationBar` or `SDCSegmentedViewControllerPositionToolbar`).
+`SDCSegmentedViewController` is very easy to use, and can be set up either using a storyboard or programmatically. It sets up a container view controller that switches between its child view controllers with a `UISegmentedControl`. The segmented control can be placed in either the navigation bar or the toolbar of the navigation controller that contains `SDCSegmentedViewController`. This position can be set using the `position` property for which the options are `SDCSegmentedViewControllerPositionNavigationBar` (default) or `SDCSegmentedViewControllerPositionToolbar`.
 
 ### Storyboard
 

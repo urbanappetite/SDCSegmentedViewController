@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 @interface SDCSegmentedViewController : UIViewController
 
 @property (nonatomic, readonly, strong) UISegmentedControl *segmentedControl;
-@property (nonatomic) SDCSegmentedViewControllerControlPosition position;
+@property (nonatomic) SDCSegmentedViewControllerControlPosition position; // Defaults to navigation bar
 
 // NSArray of UIViewController subclasses
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;
