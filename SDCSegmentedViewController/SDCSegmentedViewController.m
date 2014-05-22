@@ -128,7 +128,7 @@
 		}
 	}
 	
-	if ([self.viewControllers count] > 0)
+	if ([self.viewControllers count] > 0 && self.currentSelectedIndex != UISegmentedControlNoSegment)
 		[self updateBarsForViewController:self.viewControllers[self.segmentedControl.selectedSegmentIndex]];
 }
 
