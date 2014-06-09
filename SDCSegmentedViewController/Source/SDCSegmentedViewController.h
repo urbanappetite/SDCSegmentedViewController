@@ -17,10 +17,23 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 	SDCSegmentedViewControllerControlPositionToolbar
 };
 
-@interface SDCSegmentedViewController : UIViewController
+@class SDCSegmentedViewController;
 
+@protocol SDCSegmentedViewControllerDelegate <NSObject>
+@optional
+
+/**
+ *  Sent when the segmented controller switched the view controller it's displaying
+ */
+- (void)segmentedViewController:(SDCSegmentedViewController *)sender didTransitionToViewController:(UIViewController *)newController;
+
+@end
+
+@interface SDCSegmentedViewController : UIViewController
 @property (nonatomic, readonly, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic) SDCSegmentedViewControllerControlPosition position; // Defaults to navigation bar
+
+@property (nonatomic, weak) id <SDCSegmentedViewControllerDelegate> delegate;
 
 // NSArray of UIViewController subclasses
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;
