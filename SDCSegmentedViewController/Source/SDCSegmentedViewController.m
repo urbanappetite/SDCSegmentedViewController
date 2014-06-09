@@ -194,10 +194,8 @@
 	self.segmentedControl.selectedSegmentIndex = [self.viewControllers indexOfObject:viewController];
 	self.currentSelectedIndex = [self.viewControllers indexOfObject:viewController];
     
-    if([self.delegate respondsToSelector:@selector(segmentedViewController:didTransitionToViewController:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(segmentedViewController:didTransitionToViewController:)])
         [self.delegate segmentedViewController:self didTransitionToViewController:viewController];
-    }
 }
 
 - (void)changeViewController:(UISegmentedControl *)segmentedControl {
