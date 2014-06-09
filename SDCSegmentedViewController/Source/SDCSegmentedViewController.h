@@ -17,8 +17,11 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 	SDCSegmentedViewControllerControlPositionToolbar
 };
 
+@protocol SDCSegmentedViewControllerDelegate;
+
 @interface SDCSegmentedViewController : UIViewController
 
+@property (nonatomic, strong) id<SDCSegmentedViewControllerDelegate> delegate;
 @property (nonatomic, readonly, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic) SDCSegmentedViewControllerControlPosition position; // Defaults to navigation bar
 
@@ -34,5 +37,15 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 
 // Add segments from storyboard. The strings in the array should match segue identifiers in the storyboard.
 - (void)addStoryboardSegments:(NSArray *)segments;
+
+@end
+
+
+@protocol SDCSegmentedViewControllerDelegate <NSObject>
+
+@optional
+
+// tells the delegate the current display UIViewController
+- (void)segmentedViewController:(SDCSegmentedViewController *)controller didTransitionToViewController:(UIViewController *)newController;
 
 @end
