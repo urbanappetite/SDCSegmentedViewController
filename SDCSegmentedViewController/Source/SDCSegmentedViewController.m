@@ -140,8 +140,8 @@
 	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
 		self.toolbarItems = viewController.toolbarItems;
 
-    self.navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems;
-    self.navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems;
+	self.navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems;
+	self.navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems;
 }
 
 #pragma mark - View Controller Containment
@@ -165,7 +165,7 @@
 	[self addChildViewController:viewController];
 	
 	[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
-    [self resizeSegmentedControl];
+	[self resizeSegmentedControl];
 }
 
 #pragma mark - View Controller Transitioning
@@ -234,27 +234,23 @@
 	[self updateBarsForViewController:object];
 }
 
-#pragma mark - segmented control width
+#pragma mark - Segmented Control Width
 
--(void)resizeSegmentedControl
-{
-    if(self.segmentedControlWidth == 0)
-    {
-        [self.segmentedControl sizeToFit];
-    }
-    else
-    {
-        for (int x=0; x<self.segmentedControl.numberOfSegments; x++) {
-            [self.segmentedControl setWidth:self.segmentedControlWidth/self.segmentedControl.numberOfSegments
-                          forSegmentAtIndex:x];
-        }
-    }
+- (void)resizeSegmentedControl {
+	if (self.segmentedControlWidth == 0) {
+		[self.segmentedControl sizeToFit];
+		return;
+	}
+	
+	for (int x = 0; x < self.segmentedControl.numberOfSegments; x++) {
+		[self.segmentedControl setWidth:self.segmentedControlWidth / self.segmentedControl.numberOfSegments
+					  forSegmentAtIndex:x];
+	}
 }
 
--(void)setSegmentedControlWidth:(NSUInteger)segmentedControlWidth
-{
-    _segmentedControlWidth = segmentedControlWidth;
-    [self resizeSegmentedControl];
+- (void)setSegmentedControlWidth:(NSUInteger)segmentedControlWidth {
+	_segmentedControlWidth = segmentedControlWidth;
+	[self resizeSegmentedControl];
 }
 
 @end
