@@ -139,6 +139,9 @@
 		self.title = viewController.title;
 	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
 		self.toolbarItems = viewController.toolbarItems;
+
+    self.navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems;
+    self.navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems;
 }
 
 #pragma mark - View Controller Containment
