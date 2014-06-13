@@ -139,6 +139,9 @@
 		self.title = viewController.title;
 	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
 		self.toolbarItems = viewController.toolbarItems;
+
+	self.navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems;
+	self.navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems;
 }
 
 #pragma mark - View Controller Containment
@@ -162,7 +165,7 @@
 	[self addChildViewController:viewController];
 	
 	[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
-	[self.segmentedControl sizeToFit];
+	[self resizeSegmentedControl];
 }
 
 #pragma mark - View Controller Transitioning
@@ -229,6 +232,25 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	[self updateBarsForViewController:object];
+}
+
+#pragma mark - Segmented Control Width
+
+- (void)resizeSegmentedControl {
+	if (self.segmentedControlWidth == 0) {
+		[self.segmentedControl sizeToFit];
+		return;
+	}
+	
+	for (int x = 0; x < self.segmentedControl.numberOfSegments; x++) {
+		[self.segmentedControl setWidth:self.segmentedControlWidth / self.segmentedControl.numberOfSegments
+					  forSegmentAtIndex:x];
+	}
+}
+
+- (void)setSegmentedControlWidth:(NSUInteger)segmentedControlWidth {
+	_segmentedControlWidth = segmentedControlWidth;
+	[self resizeSegmentedControl];
 }
 
 @end

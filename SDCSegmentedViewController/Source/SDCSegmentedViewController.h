@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 
 @property (nonatomic, weak) id <SDCSegmentedViewControllerDelegate> delegate;
 
+@property (nonatomic) NSUInteger segmentedControlWidth;
+
 // NSArray of UIViewController subclasses
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;
 
