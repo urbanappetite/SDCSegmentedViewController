@@ -13,6 +13,10 @@
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic) NSInteger currentSelectedIndex;
+
+@property(nonatomic) NSString * segueNames;
+@property(nonatomic, strong, readonly) NSArray * presetSegueNames;
+
 @end
 
 @implementation SDCSegmentedViewController
@@ -78,6 +82,15 @@
 }
 
 #pragma mark - View Controller Lifecycle
+
+-(void)loadView
+{
+    [super loadView];
+    if(self.presetSegueNames)
+    {
+        [self addStoryboardSegments:self.presetSegueNames];
+    }
+}
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -255,6 +268,14 @@
 {
     _segmentedControlWidth = segmentedControlWidth;
     [self resizeSegmentedControl];
+}
+
+#pragma mark - override setter for segueName
+
+-(void)setSegueNames:(NSString*)names
+{
+    NSArray * namearray = [names componentsSeparatedByString:@","];
+    _presetSegueNames = namearray;
 }
 
 @end
