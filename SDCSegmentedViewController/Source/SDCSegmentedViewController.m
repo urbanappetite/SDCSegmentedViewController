@@ -86,9 +86,11 @@
 -(void)loadView
 {
     [super loadView];
-    if(self.presetSegueNames)
+
+    if(self.segueNames && self.segueNames.length)
     {
-        [self addStoryboardSegments:self.presetSegueNames];
+        NSArray * namearray = [self.segueNames componentsSeparatedByString:@","];
+        [self addStoryboardSegments:namearray];
     }
 }
 
@@ -264,14 +266,6 @@
 - (void)setSegmentedControlWidth:(NSUInteger)segmentedControlWidth {
 	_segmentedControlWidth = segmentedControlWidth;
 	[self resizeSegmentedControl];
-}
-
-#pragma mark - override setter for segueName
-
--(void)setSegueNames:(NSString*)names
-{
-    NSArray * namearray = [names componentsSeparatedByString:@","];
-    _presetSegueNames = namearray;
 }
 
 @end
