@@ -14,8 +14,7 @@
 @property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic) NSInteger currentSelectedIndex;
 
-@property(nonatomic) NSString * segueNames;
-@property(nonatomic, strong, readonly) NSArray * presetSegueNames;
+@property (nonatomic) NSString * segueNames;
 
 @end
 
