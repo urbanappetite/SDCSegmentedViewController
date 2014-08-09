@@ -78,13 +78,6 @@
 - (void)awakeFromNib {
 	[self createSegmentedControl];
 	_currentSelectedIndex = UISegmentedControlNoSegment;
-}
-
-#pragma mark - View Controller Lifecycle
-
--(void)loadView
-{
-    [super loadView];
 
     if(self.segueNames && self.segueNames.length)
     {
@@ -92,6 +85,8 @@
         [self addStoryboardSegments:namearray];
     }
 }
+
+#pragma mark - View Controller Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
