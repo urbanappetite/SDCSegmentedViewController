@@ -220,8 +220,7 @@
 							   options:UIViewAnimationOptionTransitionNone
 							animations:nil
 							completion:^(BOOL finished) {
-								if (finished)
-									[self didTransitionToViewController:newViewController];
+                                [self didTransitionToViewController:newViewController];
 							}];
 }
 
