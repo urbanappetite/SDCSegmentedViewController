@@ -13,6 +13,9 @@
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic) NSInteger currentSelectedIndex;
+
+@property (nonatomic, strong) NSString *segueNames;
+
 @end
 
 @implementation SDCSegmentedViewController
@@ -75,6 +78,11 @@
 - (void)awakeFromNib {
 	[self createSegmentedControl];
 	_currentSelectedIndex = UISegmentedControlNoSegment;
+
+    if ([self.segueNames length] > 0) {
+        NSArray *segueNames = [self.segueNames componentsSeparatedByString:@","];
+        [self addStoryboardSegments:segueNames];
+    }
 }
 
 #pragma mark - View Controller Lifecycle
