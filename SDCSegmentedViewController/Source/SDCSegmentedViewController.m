@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic) NSInteger currentSelectedIndex;
 
-@property (nonatomic) NSString * segueNames;
+@property (nonatomic, strong) NSString *segueNames;
 
 @end
 
@@ -79,10 +79,9 @@
 	[self createSegmentedControl];
 	_currentSelectedIndex = UISegmentedControlNoSegment;
 
-    if(self.segueNames && self.segueNames.length)
-    {
-        NSArray * namearray = [self.segueNames componentsSeparatedByString:@","];
-        [self addStoryboardSegments:namearray];
+    if ([self.segueNames length] > 0) {
+        NSArray *segueNames = [self.segueNames componentsSeparatedByString:@","];
+        [self addStoryboardSegments:segueNames];
     }
 }
 
