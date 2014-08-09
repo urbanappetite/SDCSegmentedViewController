@@ -79,10 +79,10 @@
 	[self createSegmentedControl];
 	_currentSelectedIndex = UISegmentedControlNoSegment;
 
-    if ([self.segueNames length] > 0) {
-        NSArray *segueNames = [self.segueNames componentsSeparatedByString:@","];
-        [self addStoryboardSegments:segueNames];
-    }
+	if ([self.segueNames length] > 0) {
+		NSArray *segueNames = [self.segueNames componentsSeparatedByString:@","];
+		[self addStoryboardSegments:segueNames];
+	}
 }
 
 #pragma mark - View Controller Lifecycle
