@@ -43,6 +43,10 @@ The code below is a sample use of `SDCSegmentedViewController` in `application:d
 
 Of course you don't have to use `SDCSegmentedViewController` as the root view controller, you can push it onto a navigation controller, present it modally, or do anything else that you can do with a normal view controller.
 
+## Known Issues
+
+Though this library is written to support the generic `UIViewController`, this library does not necessarily work with all view controllers. For example, `UISearchDisplayController` will show weird behavior when used in conjunction with this library. There may be, and probably are, others as well.
+
 ## License
 
 The [MIT license] (http://opensource.org/licenses/MIT) applies to the code distributed in this repo.
