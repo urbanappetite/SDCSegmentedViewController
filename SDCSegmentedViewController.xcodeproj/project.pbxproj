@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21BE65E19A185BF00E18A36 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21BE65D19A185BF00E18A36 /* XCTest.framework */; };
+		D21BE65F19A185BF00E18A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F816F3C75C003B0834 /* Foundation.framework */; };
+		D21BE66019A185BF00E18A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F616F3C75C003B0834 /* UIKit.framework */; };
+		D21BE66619A185BF00E18A36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21BE66419A185BF00E18A36 /* InfoPlist.strings */; };
+		D21BE66819A185BF00E18A36 /* SDCSegmentedViewController_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */; };
 		D2B94466192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */; };
 		D2B94467192E5D8E000FD2A1 /* SDCSegmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94465192E5D8E000FD2A1 /* SDCSegmentedViewController.m */; };
 		D2B94469192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */; };
@@ -25,7 +30,23 @@
 		D2DDA70D16F3C75C003B0834 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA70C16F3C75C003B0834 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D21BE66A19A185BF00E18A36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2DDA6EB16F3C75C003B0834 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2DDA6F216F3C75C003B0834;
+			remoteInfo = SDCSegmentedViewController;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		D21BE65C19A185BF00E18A36 /* SDCSegmentedViewController Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SDCSegmentedViewController Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D21BE65D19A185BF00E18A36 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D21BE66319A185BF00E18A36 /* SDCSegmentedViewController Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDCSegmentedViewController Tests-Info.plist"; sourceTree = "<group>"; };
+		D21BE66519A185BF00E18A36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDCSegmentedViewController_Tests.m; sourceTree = "<group>"; };
+		D21BE66919A185BF00E18A36 /* SDCSegmentedViewController Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDCSegmentedViewController Tests-Prefix.pch"; sourceTree = "<group>"; };
 		D2B94462192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCEmbeddedSegmentSegue.h; sourceTree = "<group>"; };
 		D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCEmbeddedSegmentSegue.m; sourceTree = "<group>"; };
 		D2B94464192E5D8E000FD2A1 /* SDCSegmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCSegmentedViewController.h; sourceTree = "<group>"; };
@@ -52,6 +73,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D21BE65919A185BF00E18A36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21BE65E19A185BF00E18A36 /* XCTest.framework in Frameworks */,
+				D21BE66019A185BF00E18A36 /* UIKit.framework in Frameworks */,
+				D21BE65F19A185BF00E18A36 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2DDA6F016F3C75C003B0834 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -65,6 +96,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D21BE66119A185BF00E18A36 /* SDCSegmentedViewController Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */,
+				D21BE66219A185BF00E18A36 /* Supporting Files */,
+			);
+			path = "SDCSegmentedViewController Tests";
+			sourceTree = "<group>";
+		};
+		D21BE66219A185BF00E18A36 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D21BE66319A185BF00E18A36 /* SDCSegmentedViewController Tests-Info.plist */,
+				D21BE66419A185BF00E18A36 /* InfoPlist.strings */,
+				D21BE66919A185BF00E18A36 /* SDCSegmentedViewController Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D2B94461192E5D8E000FD2A1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +133,7 @@
 				D2C4476F192BE41800885D17 /* README.md */,
 				D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */,
 				D2DDA6FC16F3C75C003B0834 /* SDCSegmentedViewController */,
+				D21BE66119A185BF00E18A36 /* SDCSegmentedViewController Tests */,
 				D2DDA6F516F3C75C003B0834 /* Frameworks */,
 				D2DDA6F416F3C75C003B0834 /* Products */,
 			);
@@ -92,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				D2DDA6F316F3C75C003B0834 /* SDCSegmentedViewController.app */,
+				D21BE65C19A185BF00E18A36 /* SDCSegmentedViewController Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +154,7 @@
 				D2DDA6F616F3C75C003B0834 /* UIKit.framework */,
 				D2DDA6F816F3C75C003B0834 /* Foundation.framework */,
 				D2DDA6FA16F3C75C003B0834 /* CoreGraphics.framework */,
+				D21BE65D19A185BF00E18A36 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,6 +190,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D21BE65B19A185BF00E18A36 /* SDCSegmentedViewController Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21BE66E19A185BF00E18A36 /* Build configuration list for PBXNativeTarget "SDCSegmentedViewController Tests" */;
+			buildPhases = (
+				D21BE65819A185BF00E18A36 /* Sources */,
+				D21BE65919A185BF00E18A36 /* Frameworks */,
+				D21BE65A19A185BF00E18A36 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D21BE66B19A185BF00E18A36 /* PBXTargetDependency */,
+			);
+			name = "SDCSegmentedViewController Tests";
+			productName = "SDCSegmentedViewController Tests";
+			productReference = D21BE65C19A185BF00E18A36 /* SDCSegmentedViewController Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D2DDA6F216F3C75C003B0834 /* SDCSegmentedViewController */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2DDA71616F3C75C003B0834 /* Build configuration list for PBXNativeTarget "SDCSegmentedViewController" */;
@@ -162,6 +233,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Scotty Doesn't Code";
+				TargetAttributes = {
+					D21BE65B19A185BF00E18A36 = {
+						TestTargetID = D2DDA6F216F3C75C003B0834;
+					};
+				};
 			};
 			buildConfigurationList = D2DDA6EE16F3C75C003B0834 /* Build configuration list for PBXProject "SDCSegmentedViewController" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -176,11 +252,20 @@
 			projectRoot = "";
 			targets = (
 				D2DDA6F216F3C75C003B0834 /* SDCSegmentedViewController */,
+				D21BE65B19A185BF00E18A36 /* SDCSegmentedViewController Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D21BE65A19A185BF00E18A36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21BE66619A185BF00E18A36 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2DDA6F116F3C75C003B0834 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,6 +284,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D21BE65819A185BF00E18A36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21BE66819A185BF00E18A36 /* SDCSegmentedViewController_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2DDA6EF16F3C75C003B0834 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,7 +306,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D21BE66B19A185BF00E18A36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2DDA6F216F3C75C003B0834 /* SDCSegmentedViewController */;
+			targetProxy = D21BE66A19A185BF00E18A36 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		D21BE66419A185BF00E18A36 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D21BE66519A185BF00E18A36 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D2DDA6FF16F3C75C003B0834 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -225,6 +334,67 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D21BE66C19A185BF00E18A36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDCSegmentedViewController.app/SDCSegmentedViewController";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D21BE66D19A185BF00E18A36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDCSegmentedViewController.app/SDCSegmentedViewController";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		D2DDA71416F3C75C003B0834 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -306,6 +476,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D21BE66E19A185BF00E18A36 /* Build configuration list for PBXNativeTarget "SDCSegmentedViewController Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21BE66C19A185BF00E18A36 /* Debug */,
+				D21BE66D19A185BF00E18A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D2DDA6EE16F3C75C003B0834 /* Build configuration list for PBXProject "SDCSegmentedViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
