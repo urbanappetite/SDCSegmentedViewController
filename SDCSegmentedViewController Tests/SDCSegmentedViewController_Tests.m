@@ -67,4 +67,25 @@ static NSString *const SDCViewControllerDefaultTitle2 = @"View controller 2";
     XCTAssertEqualObjects(segmentedControlItem.customView, self.segmentedController.segmentedControl, @"");
 }
 
+- (void)testAddingViewControllerWithExplicitTitleAfterInitialization {
+    NSString *newTitle = @"New title";
+    UIViewController *newViewController = [[UIViewController alloc] init];
+    
+    [self.segmentedController addViewController:newViewController withTitle:newTitle];
+    UISegmentedControl *segmentedControl = self.segmentedController.segmentedControl;
+    
+    XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:2], newTitle, @"");
+}
+
+- (void)testAddingViewControllerWithImplicitTitleAfterInitialization {
+    NSString *newTitle = @"New title";
+    UIViewController *newViewController = [[UIViewController alloc] init];
+    newViewController.title = newTitle;
+    
+    [self.segmentedController addViewController:newViewController];
+    UISegmentedControl *segmentedControl = self.segmentedController.segmentedControl;
+    
+    XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:2], newTitle, @"");
+}
+
 @end
