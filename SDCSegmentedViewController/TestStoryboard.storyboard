@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="03f-8H-O1W">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Segmented View Controller-->
+        <scene sceneID="imt-bc-rgs">
+            <objects>
+                <viewController storyboardIdentifier="segmentedControllerWithAutomaticSegues" id="03f-8H-O1W" customClass="SDCSegmentedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L5k-Mr-8N3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fwb-cX-U00"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vg8-7t-haS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KCw-Ya-OrX"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="segueNames" value="segment1,segment2"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="idx-Vv-Uk0" kind="custom" identifier="segment1" customClass="SDCEmbeddedSegmentSegue" id="m3Z-vU-N6V"/>
+                        <segue destination="tRu-ab-rAs" kind="custom" identifier="segment2" customClass="SDCEmbeddedSegmentSegue" id="rtb-Ue-SbS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kuu-YR-rBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-320" y="-760"/>
+        </scene>
+        <!--View Controller - First-->
+        <scene sceneID="48G-EU-UWi">
+            <objects>
+                <viewController title="First" id="idx-Vv-Uk0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Ou-Ao-Dav"/>
+                        <viewControllerLayoutGuide type="bottom" id="8sd-V3-Mel"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WBs-c3-h5I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="First" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Iw-ED-kIM">
+                                <rect key="frame" x="143" y="274" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="9Iw-ED-kIM" secondAttribute="centerY" id="EwJ-Cy-Sv7"/>
+                            <constraint firstAttribute="centerX" secondItem="9Iw-ED-kIM" secondAttribute="centerX" id="THt-st-LiY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cog-np-HAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="273" y="-1117"/>
+        </scene>
+        <!--View Controller - Second-->
+        <scene sceneID="b8m-H5-TCo">
+            <objects>
+                <viewController title="Second" id="tRu-ab-rAs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PPw-zD-ELa"/>
+                        <viewControllerLayoutGuide type="bottom" id="bof-8J-SfE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yc5-ph-cKi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Second" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-o1-EhL">
+                                <rect key="frame" x="131" y="274" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ZZ4-o1-EhL" secondAttribute="centerX" id="Mlp-Wr-dQ6"/>
+                            <constraint firstAttribute="centerY" secondItem="ZZ4-o1-EhL" secondAttribute="centerY" id="kOd-Ny-otQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ItF-St-lbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="273" y="-341"/>
+        </scene>
+        <!--Segmented View Controller-->
+        <scene sceneID="nGe-ZK-FcD">
+            <objects>
+                <viewController storyboardIdentifier="segmentedControllerWithoutAutomaticSegues" id="RqW-r2-Bkx" customClass="SDCSegmentedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nWd-hS-sAb"/>
+                        <viewControllerLayoutGuide type="bottom" id="5wU-RY-ZaP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a8o-pd-OBc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HHg-o8-HXN"/>
+                    <connections>
+                        <segue destination="wxh-0A-koD" kind="custom" identifier="segment1" customClass="SDCEmbeddedSegmentSegue" id="Q2L-uR-qv8"/>
+                        <segue destination="4jj-Rg-aI4" kind="custom" identifier="segment2" customClass="SDCEmbeddedSegmentSegue" id="3fn-Jv-a6G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BFm-pS-RZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-320" y="912"/>
+        </scene>
+        <!--View Controller - First-->
+        <scene sceneID="Vyh-xe-8cD">
+            <objects>
+                <viewController title="First" id="wxh-0A-koD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aix-IR-aqj"/>
+                        <viewControllerLayoutGuide type="bottom" id="7hG-N0-ojd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nmU-M8-GHY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="First" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5q-fJ-K5j">
+                                <rect key="frame" x="143" y="274" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="r5q-fJ-K5j" secondAttribute="centerX" id="Ora-lk-0vi"/>
+                            <constraint firstAttribute="centerY" secondItem="r5q-fJ-K5j" secondAttribute="centerY" id="x7f-Vs-rZX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvX-Tn-059" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="273" y="470"/>
+        </scene>
+        <!--View Controller - Second-->
+        <scene sceneID="1wW-ZR-Mcu">
+            <objects>
+                <viewController title="Second" id="4jj-Rg-aI4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m0s-mc-M5k"/>
+                        <viewControllerLayoutGuide type="bottom" id="pW2-SX-6gL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tni-XZ-wqa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Second" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg1-RA-RU6">
+                                <rect key="frame" x="131" y="274" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="yg1-RA-RU6" secondAttribute="centerY" id="FBi-wH-ba0"/>
+                            <constraint firstAttribute="centerX" secondItem="yg1-RA-RU6" secondAttribute="centerX" id="Xup-v8-rro"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="up1-7x-A0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="273" y="1307"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

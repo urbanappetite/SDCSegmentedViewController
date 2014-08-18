@@ -88,4 +88,27 @@ static NSString *const SDCViewControllerDefaultTitle2 = @"View controller 2";
     XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:2], newTitle, @"");
 }
 
+- (void)loadSegmentedControllerFromStoryboardWithIdentifier:(NSString *)identifier {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TestStoryboard" bundle:[NSBundle bundleForClass:[self class]]];
+    self.segmentedController = [storyboard instantiateViewControllerWithIdentifier:identifier];
+}
+
+- (void)testLoadingViewControllerFromStoryboardAutomaticallyLoadingSegues {
+    [self loadSegmentedControllerFromStoryboardWithIdentifier:@"segmentedControllerWithAutomaticSegues"];
+    UISegmentedControl *segmentedControl = self.segmentedController.segmentedControl;
+    
+    XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:0], @"First", @"");
+    XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:1], @"Second", @"");
+}
+
+- (void)testLoadingViewControllerFromStoryboardsManuallyPerformingSegues {
+    [self loadSegmentedControllerFromStoryboardWithIdentifier:@"segmentedControllerWithoutAutomaticSegues"];
+    UISegmentedControl *segmentedControl = self.segmentedController.segmentedControl;
+    
+    [self.segmentedController addStoryboardSegments:@[@"segment1", @"segment2"]];
+    
+    XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:0], @"First", @"");
+    XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:1], @"Second", @"");
+}
+
 @end

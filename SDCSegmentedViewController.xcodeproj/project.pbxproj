@@ -12,6 +12,7 @@
 		D21BE66019A185BF00E18A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F616F3C75C003B0834 /* UIKit.framework */; };
 		D21BE66619A185BF00E18A36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21BE66419A185BF00E18A36 /* InfoPlist.strings */; };
 		D21BE66819A185BF00E18A36 /* SDCSegmentedViewController_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */; };
+		D21BE67119A1C00400E18A36 /* TestStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21BE66F19A1BFFB00E18A36 /* TestStoryboard.storyboard */; };
 		D2B94466192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */; };
 		D2B94467192E5D8E000FD2A1 /* SDCSegmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94465192E5D8E000FD2A1 /* SDCSegmentedViewController.m */; };
 		D2B94469192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */; };
@@ -47,6 +48,7 @@
 		D21BE66519A185BF00E18A36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDCSegmentedViewController_Tests.m; sourceTree = "<group>"; };
 		D21BE66919A185BF00E18A36 /* SDCSegmentedViewController Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDCSegmentedViewController Tests-Prefix.pch"; sourceTree = "<group>"; };
+		D21BE66F19A1BFFB00E18A36 /* TestStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TestStoryboard.storyboard; path = ../SDCSegmentedViewController/TestStoryboard.storyboard; sourceTree = "<group>"; };
 		D2B94462192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCEmbeddedSegmentSegue.h; sourceTree = "<group>"; };
 		D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCEmbeddedSegmentSegue.m; sourceTree = "<group>"; };
 		D2B94464192E5D8E000FD2A1 /* SDCSegmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCSegmentedViewController.h; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		D21BE66119A185BF00E18A36 /* SDCSegmentedViewController Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D21BE66F19A1BFFB00E18A36 /* TestStoryboard.storyboard */,
 				D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */,
 				D21BE66219A185BF00E18A36 /* Supporting Files */,
 			);
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21BE66619A185BF00E18A36 /* InfoPlist.strings in Resources */,
+				D21BE67119A1C00400E18A36 /* TestStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
