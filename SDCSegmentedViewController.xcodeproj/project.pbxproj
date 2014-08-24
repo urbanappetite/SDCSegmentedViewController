@@ -1,512 +1,1303 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		D21BE65E19A185BF00E18A36 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21BE65D19A185BF00E18A36 /* XCTest.framework */; };
-		D21BE65F19A185BF00E18A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F816F3C75C003B0834 /* Foundation.framework */; };
-		D21BE66019A185BF00E18A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F616F3C75C003B0834 /* UIKit.framework */; };
-		D21BE66619A185BF00E18A36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21BE66419A185BF00E18A36 /* InfoPlist.strings */; };
-		D21BE66819A185BF00E18A36 /* SDCSegmentedViewController_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */; };
-		D21BE67119A1C00400E18A36 /* TestStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21BE66F19A1BFFB00E18A36 /* TestStoryboard.storyboard */; };
-		D2B94466192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */; };
-		D2B94467192E5D8E000FD2A1 /* SDCSegmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B94465192E5D8E000FD2A1 /* SDCSegmentedViewController.m */; };
-		D2B94469192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */; };
-		D2C44770192BE41800885D17 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D2C4476E192BE41800885D17 /* LICENSE */; };
-		D2C44771192BE41800885D17 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D2C4476F192BE41800885D17 /* README.md */; };
-		D2CECA7F17A172F600780CD9 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CECA7E17A172F600780CD9 /* Storyboard.storyboard */; };
-		D2CECA8217A1734300780CD9 /* SDCIntermediateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CECA8117A1734300780CD9 /* SDCIntermediateViewController.m */; };
-		D2DDA6F716F3C75C003B0834 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F616F3C75C003B0834 /* UIKit.framework */; };
-		D2DDA6F916F3C75C003B0834 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6F816F3C75C003B0834 /* Foundation.framework */; };
-		D2DDA6FB16F3C75C003B0834 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DDA6FA16F3C75C003B0834 /* CoreGraphics.framework */; };
-		D2DDA70116F3C75C003B0834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA6FF16F3C75C003B0834 /* InfoPlist.strings */; };
-		D2DDA70316F3C75C003B0834 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA70216F3C75C003B0834 /* main.m */; };
-		D2DDA70716F3C75C003B0834 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA70616F3C75C003B0834 /* AppDelegate.m */; };
-		D2DDA70916F3C75C003B0834 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA70816F3C75C003B0834 /* Default.png */; };
-		D2DDA70B16F3C75C003B0834 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA70A16F3C75C003B0834 /* Default@2x.png */; };
-		D2DDA70D16F3C75C003B0834 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA70C16F3C75C003B0834 /* Default-568h@2x.png */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D21BE66A19A185BF00E18A36 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2DDA6EB16F3C75C003B0834 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D2DDA6F216F3C75C003B0834;
-			remoteInfo = SDCSegmentedViewController;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		D21BE65C19A185BF00E18A36 /* SDCSegmentedViewController Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SDCSegmentedViewController Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D21BE65D19A185BF00E18A36 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D21BE66319A185BF00E18A36 /* SDCSegmentedViewController Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDCSegmentedViewController Tests-Info.plist"; sourceTree = "<group>"; };
-		D21BE66519A185BF00E18A36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDCSegmentedViewController_Tests.m; sourceTree = "<group>"; };
-		D21BE66919A185BF00E18A36 /* SDCSegmentedViewController Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDCSegmentedViewController Tests-Prefix.pch"; sourceTree = "<group>"; };
-		D21BE66F19A1BFFB00E18A36 /* TestStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TestStoryboard.storyboard; path = ../SDCSegmentedViewController/TestStoryboard.storyboard; sourceTree = "<group>"; };
-		D2B94462192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCEmbeddedSegmentSegue.h; sourceTree = "<group>"; };
-		D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCEmbeddedSegmentSegue.m; sourceTree = "<group>"; };
-		D2B94464192E5D8E000FD2A1 /* SDCSegmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCSegmentedViewController.h; sourceTree = "<group>"; };
-		D2B94465192E5D8E000FD2A1 /* SDCSegmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCSegmentedViewController.m; sourceTree = "<group>"; };
-		D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SDCSegmentedViewController.podspec; sourceTree = "<group>"; };
-		D2C4476E192BE41800885D17 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		D2C4476F192BE41800885D17 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		D2CECA7E17A172F600780CD9 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		D2CECA8017A1734300780CD9 /* SDCIntermediateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCIntermediateViewController.h; sourceTree = "<group>"; };
-		D2CECA8117A1734300780CD9 /* SDCIntermediateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCIntermediateViewController.m; sourceTree = "<group>"; };
-		D2DDA6F316F3C75C003B0834 /* SDCSegmentedViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDCSegmentedViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2DDA6F616F3C75C003B0834 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D2DDA6F816F3C75C003B0834 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D2DDA6FA16F3C75C003B0834 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D2DDA6FE16F3C75C003B0834 /* SDCSegmentedViewController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDCSegmentedViewController-Info.plist"; sourceTree = "<group>"; };
-		D2DDA70016F3C75C003B0834 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2DDA70216F3C75C003B0834 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D2DDA70416F3C75C003B0834 /* SDCSegmentedViewController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDCSegmentedViewController-Prefix.pch"; sourceTree = "<group>"; };
-		D2DDA70516F3C75C003B0834 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D2DDA70616F3C75C003B0834 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D2DDA70816F3C75C003B0834 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		D2DDA70A16F3C75C003B0834 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		D2DDA70C16F3C75C003B0834 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		D21BE65919A185BF00E18A36 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D21BE65E19A185BF00E18A36 /* XCTest.framework in Frameworks */,
-				D21BE66019A185BF00E18A36 /* UIKit.framework in Frameworks */,
-				D21BE65F19A185BF00E18A36 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2DDA6F016F3C75C003B0834 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2DDA6F716F3C75C003B0834 /* UIKit.framework in Frameworks */,
-				D2DDA6F916F3C75C003B0834 /* Foundation.framework in Frameworks */,
-				D2DDA6FB16F3C75C003B0834 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		D21BE66119A185BF00E18A36 /* SDCSegmentedViewController Tests */ = {
-			isa = PBXGroup;
-			children = (
-				D21BE66F19A1BFFB00E18A36 /* TestStoryboard.storyboard */,
-				D21BE66719A185BF00E18A36 /* SDCSegmentedViewController_Tests.m */,
-				D21BE66219A185BF00E18A36 /* Supporting Files */,
-			);
-			path = "SDCSegmentedViewController Tests";
-			sourceTree = "<group>";
-		};
-		D21BE66219A185BF00E18A36 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D21BE66319A185BF00E18A36 /* SDCSegmentedViewController Tests-Info.plist */,
-				D21BE66419A185BF00E18A36 /* InfoPlist.strings */,
-				D21BE66919A185BF00E18A36 /* SDCSegmentedViewController Tests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D2B94461192E5D8E000FD2A1 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				D2B94462192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.h */,
-				D2B94463192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m */,
-				D2B94464192E5D8E000FD2A1 /* SDCSegmentedViewController.h */,
-				D2B94465192E5D8E000FD2A1 /* SDCSegmentedViewController.m */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		D2DDA6EA16F3C75C003B0834 = {
-			isa = PBXGroup;
-			children = (
-				D2C4476E192BE41800885D17 /* LICENSE */,
-				D2C4476F192BE41800885D17 /* README.md */,
-				D2B94468192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec */,
-				D2DDA6FC16F3C75C003B0834 /* SDCSegmentedViewController */,
-				D21BE66119A185BF00E18A36 /* SDCSegmentedViewController Tests */,
-				D2DDA6F516F3C75C003B0834 /* Frameworks */,
-				D2DDA6F416F3C75C003B0834 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		D2DDA6F416F3C75C003B0834 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D2DDA6F316F3C75C003B0834 /* SDCSegmentedViewController.app */,
-				D21BE65C19A185BF00E18A36 /* SDCSegmentedViewController Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D2DDA6F516F3C75C003B0834 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D2DDA6F616F3C75C003B0834 /* UIKit.framework */,
-				D2DDA6F816F3C75C003B0834 /* Foundation.framework */,
-				D2DDA6FA16F3C75C003B0834 /* CoreGraphics.framework */,
-				D21BE65D19A185BF00E18A36 /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D2DDA6FC16F3C75C003B0834 /* SDCSegmentedViewController */ = {
-			isa = PBXGroup;
-			children = (
-				D2B94461192E5D8E000FD2A1 /* Source */,
-				D2CECA7E17A172F600780CD9 /* Storyboard.storyboard */,
-				D2CECA8017A1734300780CD9 /* SDCIntermediateViewController.h */,
-				D2CECA8117A1734300780CD9 /* SDCIntermediateViewController.m */,
-				D2DDA6FD16F3C75C003B0834 /* Supporting Files */,
-			);
-			path = SDCSegmentedViewController;
-			sourceTree = "<group>";
-		};
-		D2DDA6FD16F3C75C003B0834 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2DDA70516F3C75C003B0834 /* AppDelegate.h */,
-				D2DDA70616F3C75C003B0834 /* AppDelegate.m */,
-				D2DDA6FE16F3C75C003B0834 /* SDCSegmentedViewController-Info.plist */,
-				D2DDA6FF16F3C75C003B0834 /* InfoPlist.strings */,
-				D2DDA70216F3C75C003B0834 /* main.m */,
-				D2DDA70416F3C75C003B0834 /* SDCSegmentedViewController-Prefix.pch */,
-				D2DDA70816F3C75C003B0834 /* Default.png */,
-				D2DDA70A16F3C75C003B0834 /* Default@2x.png */,
-				D2DDA70C16F3C75C003B0834 /* Default-568h@2x.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		D21BE65B19A185BF00E18A36 /* SDCSegmentedViewController Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D21BE66E19A185BF00E18A36 /* Build configuration list for PBXNativeTarget "SDCSegmentedViewController Tests" */;
-			buildPhases = (
-				D21BE65819A185BF00E18A36 /* Sources */,
-				D21BE65919A185BF00E18A36 /* Frameworks */,
-				D21BE65A19A185BF00E18A36 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D21BE66B19A185BF00E18A36 /* PBXTargetDependency */,
-			);
-			name = "SDCSegmentedViewController Tests";
-			productName = "SDCSegmentedViewController Tests";
-			productReference = D21BE65C19A185BF00E18A36 /* SDCSegmentedViewController Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D2DDA6F216F3C75C003B0834 /* SDCSegmentedViewController */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D2DDA71616F3C75C003B0834 /* Build configuration list for PBXNativeTarget "SDCSegmentedViewController" */;
-			buildPhases = (
-				D2DDA6EF16F3C75C003B0834 /* Sources */,
-				D2DDA6F016F3C75C003B0834 /* Frameworks */,
-				D2DDA6F116F3C75C003B0834 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SDCSegmentedViewController;
-			productName = SDCSegmentedViewController;
-			productReference = D2DDA6F316F3C75C003B0834 /* SDCSegmentedViewController.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D2DDA6EB16F3C75C003B0834 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "Scotty Doesn't Code";
-				TargetAttributes = {
-					D21BE65B19A185BF00E18A36 = {
-						TestTargetID = D2DDA6F216F3C75C003B0834;
-					};
-				};
-			};
-			buildConfigurationList = D2DDA6EE16F3C75C003B0834 /* Build configuration list for PBXProject "SDCSegmentedViewController" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = D2DDA6EA16F3C75C003B0834;
-			productRefGroup = D2DDA6F416F3C75C003B0834 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				D2DDA6F216F3C75C003B0834 /* SDCSegmentedViewController */,
-				D21BE65B19A185BF00E18A36 /* SDCSegmentedViewController Tests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D21BE65A19A185BF00E18A36 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D21BE66619A185BF00E18A36 /* InfoPlist.strings in Resources */,
-				D21BE67119A1C00400E18A36 /* TestStoryboard.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2DDA6F116F3C75C003B0834 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2C44770192BE41800885D17 /* LICENSE in Resources */,
-				D2DDA70116F3C75C003B0834 /* InfoPlist.strings in Resources */,
-				D2DDA70916F3C75C003B0834 /* Default.png in Resources */,
-				D2C44771192BE41800885D17 /* README.md in Resources */,
-				D2DDA70B16F3C75C003B0834 /* Default@2x.png in Resources */,
-				D2DDA70D16F3C75C003B0834 /* Default-568h@2x.png in Resources */,
-				D2CECA7F17A172F600780CD9 /* Storyboard.storyboard in Resources */,
-				D2B94469192E5DB3000FD2A1 /* SDCSegmentedViewController.podspec in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		D21BE65819A185BF00E18A36 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D21BE66819A185BF00E18A36 /* SDCSegmentedViewController_Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2DDA6EF16F3C75C003B0834 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2B94466192E5D8E000FD2A1 /* SDCEmbeddedSegmentSegue.m in Sources */,
-				D2DDA70316F3C75C003B0834 /* main.m in Sources */,
-				D2DDA70716F3C75C003B0834 /* AppDelegate.m in Sources */,
-				D2B94467192E5D8E000FD2A1 /* SDCSegmentedViewController.m in Sources */,
-				D2CECA8217A1734300780CD9 /* SDCIntermediateViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D21BE66B19A185BF00E18A36 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D2DDA6F216F3C75C003B0834 /* SDCSegmentedViewController */;
-			targetProxy = D21BE66A19A185BF00E18A36 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D21BE66419A185BF00E18A36 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D21BE66519A185BF00E18A36 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D2DDA6FF16F3C75C003B0834 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2DDA70016F3C75C003B0834 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		D21BE66C19A185BF00E18A36 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDCSegmentedViewController.app/SDCSegmentedViewController";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D21BE66D19A185BF00E18A36 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDCSegmentedViewController.app/SDCSegmentedViewController";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-		D2DDA71416F3C75C003B0834 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		D2DDA71516F3C75C003B0834 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D2DDA71716F3C75C003B0834 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SDCSegmentedViewController/SDCSegmentedViewController-Prefix.pch";
-				INFOPLIST_FILE = "SDCSegmentedViewController/SDCSegmentedViewController-Info.plist";
-				PRODUCT_NAME = SDCSegmentedViewController;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		D2DDA71816F3C75C003B0834 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SDCSegmentedViewController/SDCSegmentedViewController-Prefix.pch";
-				INFOPLIST_FILE = "SDCSegmentedViewController/SDCSegmentedViewController-Info.plist";
-				PRODUCT_NAME = SDCSegmentedViewController;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		D21BE66E19A185BF00E18A36 /* Build configuration list for PBXNativeTarget "SDCSegmentedViewController Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D21BE66C19A185BF00E18A36 /* Debug */,
-				D21BE66D19A185BF00E18A36 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		D2DDA6EE16F3C75C003B0834 /* Build configuration list for PBXProject "SDCSegmentedViewController" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2DDA71416F3C75C003B0834 /* Debug */,
-				D2DDA71516F3C75C003B0834 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D2DDA71616F3C75C003B0834 /* Build configuration list for PBXNativeTarget "SDCSegmentedViewController" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2DDA71716F3C75C003B0834 /* Debug */,
-				D2DDA71816F3C75C003B0834 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = D2DDA6EB16F3C75C003B0834 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>0CB2C0D0A35A4E4F8A232193</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2BBAF072F496476193BBDF2E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>2BBAF072F496476193BBDF2E</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-SDCSegmentedViewController Tests.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>2CED303B44A94E8B8EC2BF62</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Pods-SDCSegmentedViewController Tests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>8D45E2AF6D7D4D4BBAB559F7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-SDCSegmentedViewController Tests.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Pods-SDCSegmentedViewController Tests.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE65819A185BF00E18A36</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D21BE66819A185BF00E18A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D21BE65919A185BF00E18A36</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D21BE65E19A185BF00E18A36</string>
+				<string>D21BE66019A185BF00E18A36</string>
+				<string>D21BE65F19A185BF00E18A36</string>
+				<string>0CB2C0D0A35A4E4F8A232193</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D21BE65A19A185BF00E18A36</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D21BE66619A185BF00E18A36</string>
+				<string>D21BE67119A1C00400E18A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D21BE65B19A185BF00E18A36</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D21BE66E19A185BF00E18A36</string>
+			<key>buildPhases</key>
+			<array>
+				<string>F3ACB709C9BF4BB1B303575F</string>
+				<string>D21BE65819A185BF00E18A36</string>
+				<string>D21BE65919A185BF00E18A36</string>
+				<string>D21BE65A19A185BF00E18A36</string>
+				<string>2CED303B44A94E8B8EC2BF62</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>D21BE66B19A185BF00E18A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>SDCSegmentedViewController Tests</string>
+			<key>productName</key>
+			<string>SDCSegmentedViewController Tests</string>
+			<key>productReference</key>
+			<string>D21BE65C19A185BF00E18A36</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>D21BE65C19A185BF00E18A36</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController Tests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D21BE65D19A185BF00E18A36</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>D21BE65E19A185BF00E18A36</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D21BE65D19A185BF00E18A36</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D21BE65F19A185BF00E18A36</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA6F816F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D21BE66019A185BF00E18A36</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA6F616F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D21BE66119A185BF00E18A36</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D21BE66F19A1BFFB00E18A36</string>
+				<string>D21BE66719A185BF00E18A36</string>
+				<string>D21BE66219A185BF00E18A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController Tests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE66219A185BF00E18A36</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D21BE66319A185BF00E18A36</string>
+				<string>D21BE66419A185BF00E18A36</string>
+				<string>D21BE66919A185BF00E18A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE66319A185BF00E18A36</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController Tests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE66419A185BF00E18A36</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D21BE66519A185BF00E18A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE66519A185BF00E18A36</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE66619A185BF00E18A36</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D21BE66419A185BF00E18A36</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D21BE66719A185BF00E18A36</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController_Tests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE66819A185BF00E18A36</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D21BE66719A185BF00E18A36</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D21BE66919A185BF00E18A36</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController Tests-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE66A19A185BF00E18A36</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D2DDA6EB16F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D2DDA6F216F3C75C003B0834</string>
+			<key>remoteInfo</key>
+			<string>SDCSegmentedViewController</string>
+		</dict>
+		<key>D21BE66B19A185BF00E18A36</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>D2DDA6F216F3C75C003B0834</string>
+			<key>targetProxy</key>
+			<string>D21BE66A19A185BF00E18A36</string>
+		</dict>
+		<key>D21BE66C19A185BF00E18A36</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>8D45E2AF6D7D4D4BBAB559F7</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/SDCSegmentedViewController.app/SDCSegmentedViewController</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D21BE66D19A185BF00E18A36</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>8D45E2AF6D7D4D4BBAB559F7</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/SDCSegmentedViewController.app/SDCSegmentedViewController</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Prefix.pch</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>SDCSegmentedViewController Tests/SDCSegmentedViewController Tests-Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D21BE66E19A185BF00E18A36</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D21BE66C19A185BF00E18A36</string>
+				<string>D21BE66D19A185BF00E18A36</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D21BE66F19A1BFFB00E18A36</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>TestStoryboard.storyboard</string>
+			<key>path</key>
+			<string>../SDCSegmentedViewController/TestStoryboard.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D21BE67119A1C00400E18A36</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D21BE66F19A1BFFB00E18A36</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2B94461192E5D8E000FD2A1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2B94462192E5D8E000FD2A1</string>
+				<string>D2B94463192E5D8E000FD2A1</string>
+				<string>D2B94464192E5D8E000FD2A1</string>
+				<string>D2B94465192E5D8E000FD2A1</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Source</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2B94462192E5D8E000FD2A1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SDCEmbeddedSegmentSegue.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2B94463192E5D8E000FD2A1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SDCEmbeddedSegmentSegue.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2B94464192E5D8E000FD2A1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2B94465192E5D8E000FD2A1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2B94466192E5D8E000FD2A1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2B94463192E5D8E000FD2A1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2B94467192E5D8E000FD2A1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2B94465192E5D8E000FD2A1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2B94468192E5DB3000FD2A1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController.podspec</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2B94469192E5DB3000FD2A1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2B94468192E5DB3000FD2A1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2C4476E192BE41800885D17</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>LICENSE</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2C4476F192BE41800885D17</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>README.md</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2C44770192BE41800885D17</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2C4476E192BE41800885D17</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2C44771192BE41800885D17</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2C4476F192BE41800885D17</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2CECA7E17A172F600780CD9</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Storyboard.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2CECA7F17A172F600780CD9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2CECA7E17A172F600780CD9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2CECA8017A1734300780CD9</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SDCIntermediateViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2CECA8117A1734300780CD9</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SDCIntermediateViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2CECA8217A1734300780CD9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2CECA8117A1734300780CD9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA6EA16F3C75C003B0834</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2C4476E192BE41800885D17</string>
+				<string>D2C4476F192BE41800885D17</string>
+				<string>D2B94468192E5DB3000FD2A1</string>
+				<string>D2DDA6FC16F3C75C003B0834</string>
+				<string>D21BE66119A185BF00E18A36</string>
+				<string>D2DDA6F516F3C75C003B0834</string>
+				<string>D2DDA6F416F3C75C003B0834</string>
+				<string>8D45E2AF6D7D4D4BBAB559F7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA6EB16F3C75C003B0834</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0460</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Scotty Doesn't Code</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>D21BE65B19A185BF00E18A36</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>D2DDA6F216F3C75C003B0834</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>D2DDA6EE16F3C75C003B0834</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>D2DDA6EA16F3C75C003B0834</string>
+			<key>productRefGroup</key>
+			<string>D2DDA6F416F3C75C003B0834</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>D2DDA6F216F3C75C003B0834</string>
+				<string>D21BE65B19A185BF00E18A36</string>
+			</array>
+		</dict>
+		<key>D2DDA6EE16F3C75C003B0834</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D2DDA71416F3C75C003B0834</string>
+				<string>D2DDA71516F3C75C003B0834</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D2DDA6EF16F3C75C003B0834</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2B94466192E5D8E000FD2A1</string>
+				<string>D2DDA70316F3C75C003B0834</string>
+				<string>D2DDA70716F3C75C003B0834</string>
+				<string>D2B94467192E5D8E000FD2A1</string>
+				<string>D2CECA8217A1734300780CD9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2DDA6F016F3C75C003B0834</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2DDA6F716F3C75C003B0834</string>
+				<string>D2DDA6F916F3C75C003B0834</string>
+				<string>D2DDA6FB16F3C75C003B0834</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2DDA6F116F3C75C003B0834</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2C44770192BE41800885D17</string>
+				<string>D2DDA70116F3C75C003B0834</string>
+				<string>D2DDA70916F3C75C003B0834</string>
+				<string>D2C44771192BE41800885D17</string>
+				<string>D2DDA70B16F3C75C003B0834</string>
+				<string>D2DDA70D16F3C75C003B0834</string>
+				<string>D2CECA7F17A172F600780CD9</string>
+				<string>D2B94469192E5DB3000FD2A1</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2DDA6F216F3C75C003B0834</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D2DDA71616F3C75C003B0834</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D2DDA6EF16F3C75C003B0834</string>
+				<string>D2DDA6F016F3C75C003B0834</string>
+				<string>D2DDA6F116F3C75C003B0834</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>SDCSegmentedViewController</string>
+			<key>productName</key>
+			<string>SDCSegmentedViewController</string>
+			<key>productReference</key>
+			<string>D2DDA6F316F3C75C003B0834</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>D2DDA6F316F3C75C003B0834</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D2DDA6F416F3C75C003B0834</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2DDA6F316F3C75C003B0834</string>
+				<string>D21BE65C19A185BF00E18A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA6F516F3C75C003B0834</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2DDA6F616F3C75C003B0834</string>
+				<string>D2DDA6F816F3C75C003B0834</string>
+				<string>D2DDA6FA16F3C75C003B0834</string>
+				<string>D21BE65D19A185BF00E18A36</string>
+				<string>2BBAF072F496476193BBDF2E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA6F616F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D2DDA6F716F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA6F616F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA6F816F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D2DDA6F916F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA6F816F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA6FA16F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D2DDA6FB16F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA6FA16F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA6FC16F3C75C003B0834</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2B94461192E5D8E000FD2A1</string>
+				<string>D2CECA7E17A172F600780CD9</string>
+				<string>D2CECA8017A1734300780CD9</string>
+				<string>D2CECA8117A1734300780CD9</string>
+				<string>D2DDA6FD16F3C75C003B0834</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA6FD16F3C75C003B0834</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2DDA70516F3C75C003B0834</string>
+				<string>D2DDA70616F3C75C003B0834</string>
+				<string>D2DDA6FE16F3C75C003B0834</string>
+				<string>D2DDA6FF16F3C75C003B0834</string>
+				<string>D2DDA70216F3C75C003B0834</string>
+				<string>D2DDA70416F3C75C003B0834</string>
+				<string>D2DDA70816F3C75C003B0834</string>
+				<string>D2DDA70A16F3C75C003B0834</string>
+				<string>D2DDA70C16F3C75C003B0834</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA6FE16F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA6FF16F3C75C003B0834</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2DDA70016F3C75C003B0834</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70016F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70116F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA6FF16F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA70216F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70316F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA70216F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA70416F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SDCSegmentedViewController-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70516F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70616F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70716F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA70616F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA70816F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>image.png</string>
+			<key>path</key>
+			<string>Default.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70916F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA70816F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA70A16F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>image.png</string>
+			<key>path</key>
+			<string>Default@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70B16F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA70A16F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA70C16F3C75C003B0834</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>image.png</string>
+			<key>path</key>
+			<string>Default-568h@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2DDA70D16F3C75C003B0834</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2DDA70C16F3C75C003B0834</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2DDA71416F3C75C003B0834</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.1</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D2DDA71516F3C75C003B0834</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.1</string>
+				<key>OTHER_CFLAGS</key>
+				<string>-DNS_BLOCK_ASSERTIONS=1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D2DDA71616F3C75C003B0834</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D2DDA71716F3C75C003B0834</string>
+				<string>D2DDA71816F3C75C003B0834</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D2DDA71716F3C75C003B0834</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>SDCSegmentedViewController/SDCSegmentedViewController-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>SDCSegmentedViewController/SDCSegmentedViewController-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>SDCSegmentedViewController</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D2DDA71816F3C75C003B0834</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>SDCSegmentedViewController/SDCSegmentedViewController-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>SDCSegmentedViewController/SDCSegmentedViewController-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>SDCSegmentedViewController</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>F3ACB709C9BF4BB1B303575F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D2DDA6EB16F3C75C003B0834</string>
+</dict>
+</plist>
