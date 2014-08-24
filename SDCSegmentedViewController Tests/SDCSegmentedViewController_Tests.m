@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 
 #import "SDCSegmentedViewController.h"
 
@@ -109,6 +110,39 @@ static NSString *const SDCViewControllerDefaultTitle2 = @"View controller 2";
     
     XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:0], @"First", @"");
     XCTAssertEqualObjects([segmentedControl titleForSegmentAtIndex:1], @"Second", @"");
+}
+
+- (id)createMockForDelegate {
+    id mockDelegate = [OCMockObject mockForProtocol:@protocol(SDCSegmentedViewControllerDelegate)];
+    self.segmentedController.delegate = mockDelegate;
+    
+    return mockDelegate;
+}
+
+- (void)testDelegateMethodIsSent {
+    id mockDelegate = [self createMockForDelegate];
+    [[mockDelegate expect] segmentedViewController:self.segmentedController didTransitionToViewController:[OCMArg any]];
+    
+    [self.segmentedController viewWillAppear:NO];
+    
+    [mockDelegate verify];
+}
+
+- (void)testCorrectViewControllerIsReportedInDelegateMethod {
+    NSInteger newIndex = 1;
+    
+    id mockDelegate = [self createMockForDelegate];
+    [[mockDelegate expect] segmentedViewController:self.segmentedController didTransitionToViewController:[OCMArg any]];
+    [self.segmentedController viewWillAppear:NO];
+    
+    [[mockDelegate expect] segmentedViewController:self.segmentedController didTransitionToViewController:self.viewControllers[newIndex]];
+    [self.segmentedController.segmentedControl setSelectedSegmentIndex:newIndex];
+    [self.segmentedController.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
+    
+    // Delay a little to give the animation time to complete and call the delegate
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+    
+    [mockDelegate verify];
 }
 
 @end
