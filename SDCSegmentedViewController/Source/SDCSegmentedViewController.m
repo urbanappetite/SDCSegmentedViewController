@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) NSString *segueNames;
 
+@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeRecognizer;
+@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeRecognizer;
 @end
 
 @implementation SDCSegmentedViewController
@@ -35,6 +37,24 @@
 - (void)setPosition:(SDCSegmentedViewControllerControlPosition)position {
 	_position = position;
 	[self moveControlToPosition:position];
+}
+
+- (void)setSwitchesWithSwipe:(BOOL)switchesWithSwipe {
+    if (_switchesWithSwipe != switchesWithSwipe) {
+        if (switchesWithSwipe) {
+            self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
+            self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+            
+            self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
+            self.rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+            
+            [self.view addGestureRecognizer:self.leftSwipeRecognizer];
+            [self.view addGestureRecognizer:self.rightSwipeRecognizer];
+        } else {
+            [self.view removeGestureRecognizer:self.leftSwipeRecognizer];
+            [self.view removeGestureRecognizer:self.rightSwipeRecognizer];
+        }
+    }
 }
 
 #pragma mark - Initializers
@@ -186,6 +206,16 @@
 	[self didTransitionToViewController:firstViewController];
 }
 
+- (void)switchViewControllerWithSwipe:(UISwipeGestureRecognizer *)sender {
+    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+        if (self.currentSelectedIndex < [self.viewControllers count] - 1)
+            [self transitionToViewControllerWithIndex:self.currentSelectedIndex + 1];
+    } else {
+        if (self.currentSelectedIndex > 0)
+            [self transitionToViewControllerWithIndex:self.currentSelectedIndex - 1];
+    }
+}
+
 - (void)willTransitionToViewController:(UIViewController *)viewController {
 	if (self.currentSelectedIndex != UISegmentedControlNoSegment) {
 		UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
@@ -209,9 +239,9 @@
         [self.delegate segmentedViewController:self didTransitionToViewController:viewController];
 }
 
-- (void)changeViewController:(UISegmentedControl *)segmentedControl {
-	UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
-	UIViewController *newViewController = self.viewControllers[segmentedControl.selectedSegmentIndex];
+- (void)transitionToViewControllerWithIndex:(NSUInteger)index {
+    UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
+	UIViewController *newViewController = self.viewControllers[index];
 	
 	[self willTransitionToViewController:newViewController];
 	[self transitionFromViewController:oldViewController
@@ -222,6 +252,10 @@
 							completion:^(BOOL finished) {
 								[self didTransitionToViewController:newViewController];
 							}];
+}
+
+- (void)changeViewController:(UISegmentedControl *)segmentedControl {
+	[self transitionToViewControllerWithIndex:segmentedControl.selectedSegmentIndex];
 }
 
 #pragma mark - KVO

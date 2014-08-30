@@ -18,6 +18,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	SDCSegmentedViewController *segmentedViewController = segue.destinationViewController;
 	segmentedViewController.position = SDCSegmentedViewControllerControlPositionNavigationBar;
+    segmentedViewController.switchesWithSwipe = YES;
 	[segmentedViewController addStoryboardSegments:@[@"segment1", @"segment2"]];
 }
 

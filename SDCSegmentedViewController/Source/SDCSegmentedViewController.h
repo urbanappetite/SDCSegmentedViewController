@@ -35,6 +35,13 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 
 @property (nonatomic, weak) id <SDCSegmentedViewControllerDelegate> delegate;
 
+/*
+ *  When set to YES, swiping the view will switch view controllers (like Notification Center in iOS 7+)
+ */
+@property (nonatomic) BOOL switchesWithSwipe;
+@property (nonatomic, readonly) UISwipeGestureRecognizer *leftSwipeRecognizer;
+@property (nonatomic, readonly) UISwipeGestureRecognizer *rightSwipeRecognizer;
+
 @property (nonatomic) NSUInteger segmentedControlWidth;
 
 // NSArray of UIViewController subclasses
