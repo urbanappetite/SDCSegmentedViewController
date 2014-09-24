@@ -7,7 +7,6 @@
 //
 
 #import "SDCSegmentedViewController.h"
-#import <iAd/iAd.h>
 
 @interface SDCSegmentedViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
@@ -134,12 +133,14 @@
 	[self stopObservingViewController:self.viewControllers[self.currentSelectedIndex]];
 }
 
+
 #pragma mark - View Management
 
 - (void)adjustScrollViewInsets:(UIViewController *)viewController {
     UIView *viewToCheck = viewController.view;
-    if(viewController.canDisplayBannerAds) {
-        viewToCheck = viewController.originalContentView;
+    if([self viewControllerDisplaysIAds:viewController]) {
+        // at this point, we know that the iAd framework has been linked
+        viewToCheck = [viewController performSelector:@selector(originalContentView)];
     }
 	if ([viewToCheck isKindOfClass:[UIScrollView class]] && viewController.automaticallyAdjustsScrollViewInsets) {
 		UIScrollView *scrollView = (UIScrollView *)viewToCheck;
@@ -297,6 +298,24 @@
 - (void)setSegmentedControlWidth:(NSUInteger)segmentedControlWidth {
 	_segmentedControlWidth = segmentedControlWidth;
 	[self resizeSegmentedControl];
+}
+
+
+#pragma mark - Helper
+- (BOOL)viewControllerDisplaysIAds:(UIViewController *)viewController
+{
+    SEL selector = NSSelectorFromString(@"canDisplayBannerAds");
+    if ([viewController respondsToSelector:selector]) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [[viewController class] instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:viewController];
+        [invocation invoke];
+        BOOL canDisplayAds;
+        [invocation getReturnValue:&canDisplayAds];
+        return canDisplayAds;
+    }
+    return NO;
 }
 
 @end
