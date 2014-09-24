@@ -7,6 +7,7 @@
 //
 
 #import "SDCSegmentedViewController.h"
+#import <iAd/iAd.h>
 
 @interface SDCSegmentedViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
@@ -136,8 +137,12 @@
 #pragma mark - View Management
 
 - (void)adjustScrollViewInsets:(UIViewController *)viewController {
-	if ([viewController.view isKindOfClass:[UIScrollView class]] && viewController.automaticallyAdjustsScrollViewInsets) {
-		UIScrollView *scrollView = (UIScrollView *)viewController.view;
+    UIView *viewToCheck = viewController.view;
+    if(viewController.canDisplayBannerAds) {
+        viewToCheck = viewController.originalContentView;
+    }
+	if ([viewToCheck isKindOfClass:[UIScrollView class]] && viewController.automaticallyAdjustsScrollViewInsets) {
+		UIScrollView *scrollView = (UIScrollView *)viewToCheck;
 		UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
 		scrollView.contentInset = insets;
 		scrollView.scrollIndicatorInsets = insets;
