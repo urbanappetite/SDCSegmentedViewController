@@ -25,13 +25,13 @@
 - (NSMutableArray *)viewControllers {
 	if (!_viewControllers)
 		_viewControllers = [NSMutableArray array];
-    return _viewControllers;
+	return _viewControllers;
 }
 
 - (NSMutableArray *)titles {
 	if (!_titles)
 		_titles = [NSMutableArray array];
-    return _titles;
+	return _titles;
 }
 
 - (void)setPosition:(SDCSegmentedViewControllerControlPosition)position {
@@ -40,21 +40,21 @@
 }
 
 - (void)setSwitchesWithSwipe:(BOOL)switchesWithSwipe {
-    if (_switchesWithSwipe != switchesWithSwipe) {
-        if (switchesWithSwipe) {
-            self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
-            self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-            
-            self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
-            self.rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-            
-            [self.view addGestureRecognizer:self.leftSwipeRecognizer];
-            [self.view addGestureRecognizer:self.rightSwipeRecognizer];
-        } else {
-            [self.view removeGestureRecognizer:self.leftSwipeRecognizer];
-            [self.view removeGestureRecognizer:self.rightSwipeRecognizer];
-        }
-    }
+	if (_switchesWithSwipe != switchesWithSwipe) {
+		if (switchesWithSwipe) {
+			self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
+			self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+			
+			self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
+			self.rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+			
+			[self.view addGestureRecognizer:self.leftSwipeRecognizer];
+			[self.view addGestureRecognizer:self.rightSwipeRecognizer];
+		} else {
+			[self.view removeGestureRecognizer:self.leftSwipeRecognizer];
+			[self.view removeGestureRecognizer:self.rightSwipeRecognizer];
+		}
+	}
 }
 
 #pragma mark - Initializers
@@ -98,7 +98,7 @@
 - (void)awakeFromNib {
 	[self createSegmentedControl];
 	_currentSelectedIndex = UISegmentedControlNoSegment;
-
+	
 	if ([self.segueNames length] > 0) {
 		NSArray *segueNames = [self.segueNames componentsSeparatedByString:@","];
 		[self addStoryboardSegments:segueNames];
@@ -109,7 +109,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-    
+	
 	if ([self.viewControllers count] == 0)
 		[NSException raise:@"SDCSegmentedViewControllerException" format:@"SDCSegmentedViewController has no view controllers that it can display."];
 	
@@ -137,11 +137,13 @@
 #pragma mark - View Management
 
 - (void)adjustScrollViewInsets:(UIViewController *)viewController {
-    UIView *viewToCheck = viewController.view;
-    if([self viewControllerDisplaysIAds:viewController]) {
-        // at this point, we know that the iAd framework has been linked
-        viewToCheck = [viewController performSelector:@selector(originalContentView)];
-    }
+	UIView *viewToCheck = viewController.view;
+	
+	if ([self sdc_displaysBannerAds]) {
+		// At this point, we know that the iAd framework has been linked, so sending originalContentView is safe
+		viewToCheck = [viewController performSelector:@selector(originalContentView)];
+	}
+	
 	if ([viewToCheck isKindOfClass:[UIScrollView class]] && viewController.automaticallyAdjustsScrollViewInsets) {
 		UIScrollView *scrollView = (UIScrollView *)viewToCheck;
 		UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
@@ -173,7 +175,7 @@
 		self.title = viewController.title;
 	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
 		self.toolbarItems = viewController.toolbarItems;
-
+	
 	self.navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems;
 	self.navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems;
 }
@@ -213,13 +215,13 @@
 }
 
 - (void)switchViewControllerWithSwipe:(UISwipeGestureRecognizer *)sender {
-    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-        if (self.currentSelectedIndex < [self.viewControllers count] - 1)
-            [self transitionToViewControllerWithIndex:self.currentSelectedIndex + 1];
-    } else {
-        if (self.currentSelectedIndex > 0)
-            [self transitionToViewControllerWithIndex:self.currentSelectedIndex - 1];
-    }
+	if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+		if (self.currentSelectedIndex < [self.viewControllers count] - 1)
+			[self transitionToViewControllerWithIndex:self.currentSelectedIndex + 1];
+	} else {
+		if (self.currentSelectedIndex > 0)
+			[self transitionToViewControllerWithIndex:self.currentSelectedIndex - 1];
+	}
 }
 
 - (void)willTransitionToViewController:(UIViewController *)viewController {
@@ -240,13 +242,13 @@
 	
 	self.segmentedControl.selectedSegmentIndex = [self.viewControllers indexOfObject:viewController];
 	self.currentSelectedIndex = [self.viewControllers indexOfObject:viewController];
-    
-    if ([self.delegate respondsToSelector:@selector(segmentedViewController:didTransitionToViewController:)])
-        [self.delegate segmentedViewController:self didTransitionToViewController:viewController];
+	
+	if ([self.delegate respondsToSelector:@selector(segmentedViewController:didTransitionToViewController:)])
+		[self.delegate segmentedViewController:self didTransitionToViewController:viewController];
 }
 
 - (void)transitionToViewControllerWithIndex:(NSUInteger)index {
-    UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
+	UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
 	UIViewController *newViewController = self.viewControllers[index];
 	
 	[self willTransitionToViewController:newViewController];
@@ -300,22 +302,27 @@
 	[self resizeSegmentedControl];
 }
 
+@end
 
-#pragma mark - Helper
-- (BOOL)viewControllerDisplaysIAds:(UIViewController *)viewController
-{
-    SEL selector = NSSelectorFromString(@"canDisplayBannerAds");
-    if ([viewController respondsToSelector:selector]) {
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                    [[viewController class] instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:viewController];
-        [invocation invoke];
-        BOOL canDisplayAds;
-        [invocation getReturnValue:&canDisplayAds];
-        return canDisplayAds;
-    }
-    return NO;
+@implementation UIViewController (SDCiAdSupport)
+
+- (BOOL)sdc_displaysBannerAds {
+	SEL selector = NSSelectorFromString(@"canDisplayBannerAds");
+	
+	if ([self respondsToSelector:selector]) {
+		NSMethodSignature *methodSignature = [[self class] instanceMethodSignatureForSelector:selector];
+		NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+		[invocation setSelector:selector];
+		[invocation setTarget:self];
+		[invocation invoke];
+		
+		BOOL canDisplayAds;
+		[invocation getReturnValue:&canDisplayAds];
+		
+		return canDisplayAds;
+	}
+	
+	return NO;
 }
 
 @end

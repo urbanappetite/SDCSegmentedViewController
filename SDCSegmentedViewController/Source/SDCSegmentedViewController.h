@@ -58,3 +58,9 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 - (void)addStoryboardSegments:(NSArray *)segments;
 
 @end
+
+@interface UIViewController (SDCiAdSupport)
+
+- (BOOL)sdc_displaysBannerAds;
+
+@end

@@ -147,6 +147,7 @@
 				8D45E2AF6D7D4D4BBAB559F7 /* Pods-SDCSegmentedViewController Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		D2DDA6F416F3C75C003B0834 /* Products */ = {
 			isa = PBXGroup;
