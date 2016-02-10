@@ -25,12 +25,14 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 /**
  *  Sent when the segmented controller switched the view controller it's displaying
  */
+- (void)segmentedViewController:(SDCSegmentedViewController *)sender willTransitionToViewController:(UIViewController *)newController;
 - (void)segmentedViewController:(SDCSegmentedViewController *)sender didTransitionToViewController:(UIViewController *)newController;
 
 @end
 
 @interface SDCSegmentedViewController : UIViewController
 @property (nonatomic, readonly, strong) UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic) SDCSegmentedViewControllerControlPosition position; // Defaults to navigation bar
 
 @property (nonatomic, weak) id <SDCSegmentedViewControllerDelegate> delegate;
@@ -43,6 +45,14 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 @property (nonatomic, readonly) UISwipeGestureRecognizer *rightSwipeRecognizer;
 
 @property (nonatomic) NSUInteger segmentedControlWidth;
+@property (nonatomic) NSInteger currentSelectedIndex;
+@property (nonatomic) NSInteger transitioningToSelectedIndex;
+@property (nonatomic) NSInteger firstViewIndex;
+
+@property (readonly, nonatomic) CGFloat extraTopOffset;
+@property (readonly, nonatomic) CGFloat extraScrollInset;
+
+@property (nonatomic, strong) NSMutableArray *segmentTitles;
 
 // NSArray of UIViewController subclasses
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;
@@ -57,10 +67,14 @@ typedef NS_ENUM(NSInteger, SDCSegmentedViewControllerControlPosition) {
 // Add segments from storyboard. The strings in the array should match segue identifiers in the storyboard.
 - (void)addStoryboardSegments:(NSArray *)segments;
 
-@end
+- (void)adjustScrollViewInsets;
+- (void)adjustScrollViewInsets:(UIViewController *)viewController;
 
-@interface UIViewController (SDCiAdSupport)
+- (void)selectViewControllerWithIndex:(NSInteger)index;
+- (void)willTransitionToViewController:(UIViewController *)viewController;
 
-- (BOOL)sdc_displaysBannerAds;
+- (void)didTransitionToViewController:(UIViewController *)viewController;
+
+- (void)reset;
 
 @end

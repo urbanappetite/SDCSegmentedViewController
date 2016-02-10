@@ -10,14 +10,20 @@
 
 @interface SDCSegmentedViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
-@property (nonatomic, strong) NSMutableArray *viewControllers;
-@property (nonatomic, strong) NSMutableArray *titles;
-@property (nonatomic) NSInteger currentSelectedIndex;
 
 @property (nonatomic, strong) NSString *segueNames;
 
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeRecognizer;
 @property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeRecognizer;
+
+@property (nonatomic, strong) NSHashTable *loadedViewControllers;
+
+@property (strong, nonatomic) NSMutableDictionary *hasAdjustedContentOffsetDict;
+
+@property (nonatomic) BOOL lockContentOffset;
+
+@property (nonatomic) UIView *originalTitleView;
+
 @end
 
 @implementation SDCSegmentedViewController
@@ -25,13 +31,19 @@
 - (NSMutableArray *)viewControllers {
 	if (!_viewControllers)
 		_viewControllers = [NSMutableArray array];
-	return _viewControllers;
+    return _viewControllers;
 }
 
-- (NSMutableArray *)titles {
-	if (!_titles)
-		_titles = [NSMutableArray array];
-	return _titles;
+- (NSMutableArray *)segmentTitles {
+	if (!_segmentTitles)
+		_segmentTitles = [NSMutableArray array];
+    return _segmentTitles;
+}
+
+- (NSHashTable *)loadedViewControllers {
+    if (!_loadedViewControllers)
+        _loadedViewControllers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+    return _loadedViewControllers;
 }
 
 - (void)setPosition:(SDCSegmentedViewControllerControlPosition)position {
@@ -40,21 +52,21 @@
 }
 
 - (void)setSwitchesWithSwipe:(BOOL)switchesWithSwipe {
-	if (_switchesWithSwipe != switchesWithSwipe) {
-		if (switchesWithSwipe) {
-			self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
-			self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-			
-			self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
-			self.rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-			
-			[self.view addGestureRecognizer:self.leftSwipeRecognizer];
-			[self.view addGestureRecognizer:self.rightSwipeRecognizer];
-		} else {
-			[self.view removeGestureRecognizer:self.leftSwipeRecognizer];
-			[self.view removeGestureRecognizer:self.rightSwipeRecognizer];
-		}
-	}
+    if (_switchesWithSwipe != switchesWithSwipe) {
+        if (switchesWithSwipe) {
+            self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
+            self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+            
+            self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewControllerWithSwipe:)];
+            self.rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+            
+            [self.view addGestureRecognizer:self.leftSwipeRecognizer];
+            [self.view addGestureRecognizer:self.rightSwipeRecognizer];
+        } else {
+            [self.view removeGestureRecognizer:self.leftSwipeRecognizer];
+            [self.view removeGestureRecognizer:self.rightSwipeRecognizer];
+        }
+    }
 }
 
 #pragma mark - Initializers
@@ -68,17 +80,21 @@
 	
 	if (self) {
 		[self createSegmentedControl];
-		
-		_currentSelectedIndex = UISegmentedControlNoSegment;
+        
+        _currentSelectedIndex = UISegmentedControlNoSegment;
+        _transitioningToSelectedIndex = NSNotFound;
+        
 		_viewControllers = [NSMutableArray array];
-		_titles = [NSMutableArray array];
-		
+		_segmentTitles = [NSMutableArray array];
+        _firstViewIndex = -1;
+        _hasAdjustedContentOffsetDict = [NSMutableDictionary dictionary];
+        
 		[viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
 			if ([obj isKindOfClass:[UIViewController class]] && index < [titles count])
 				[self addViewController:obj withTitle:titles[index]];
 		}];
 		
-		if ([_viewControllers count] == 0 || [_viewControllers count] != [_titles count]) {
+		if ([_viewControllers count] == 0 || [_viewControllers count] != [_segmentTitles count]) {
 			self = nil;
 			NSLog(@"%@: Invalid configuration of view controllers and titles.", NSStringFromClass([self class]));
 		}
@@ -95,10 +111,23 @@
 #endif
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        _firstViewIndex = -1;
+        _hasAdjustedContentOffsetDict = [NSMutableDictionary dictionary];
+    }
+    
+    return self;
+}
+
 - (void)awakeFromNib {
-	[self createSegmentedControl];
-	_currentSelectedIndex = UISegmentedControlNoSegment;
-	
+    [self createSegmentedControl];
+    _currentSelectedIndex = UISegmentedControlNoSegment;
+    _transitioningToSelectedIndex = NSNotFound;
+
 	if ([self.segueNames length] > 0) {
 		NSArray *segueNames = [self.segueNames componentsSeparatedByString:@","];
 		[self addStoryboardSegments:segueNames];
@@ -107,11 +136,31 @@
 
 #pragma mark - View Controller Lifecycle
 
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    self.originalTitleView = self.navigationItem.titleView;
+    
+    self.lockContentOffset = YES;
+    
+    [self adjustScrollViewInsets];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
+    
+    if ([self.viewControllers count] == 0) {
+        
+        [self.view setNeedsLayout];
+        [super viewWillAppear:animated];
+
+        return;
+    }
+    
+    [self moveControlToPosition:self.position];
+    [self.view setNeedsLayout];
+    
 	[super viewWillAppear:animated];
-	
-	if ([self.viewControllers count] == 0)
-		[NSException raise:@"SDCSegmentedViewControllerException" format:@"SDCSegmentedViewController has no view controllers that it can display."];
 	
 	if (self.currentSelectedIndex == UISegmentedControlNoSegment)
 		[self showFirstViewController];
@@ -119,55 +168,187 @@
 		[self observeViewController:self.viewControllers[self.currentSelectedIndex]];
 	
 	[self moveControlToPosition:self.position];
+    [self.view setNeedsLayout];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.lockContentOffset = NO;
+    
+    [super viewDidAppear:animated];
 }
 
 - (void)viewWillLayoutSubviews {
 	[super viewWillLayoutSubviews];
 	
-	UIViewController *childViewController = self.viewControllers[self.currentSelectedIndex];
+    if (self.viewControllers.count == 0) {
+        [self adjustScrollViewInsets:self];
+        
+        return;
+    }
+    
+    NSUInteger selectIndex = self.transitioningToSelectedIndex;
+    
+    if (selectIndex == NSNotFound) {
+        selectIndex = self.currentSelectedIndex;
+    }
+    
+	UIViewController *childViewController = self.viewControllers[selectIndex];
 	[self adjustScrollViewInsets:childViewController];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
+    
+    if (self.viewControllers.count == 0) {
+        return;
+    }
+    
 	[self stopObservingViewController:self.viewControllers[self.currentSelectedIndex]];
 }
 
-
 #pragma mark - View Management
 
+- (void)adjustScrollViewInsets
+{
+    if (self.viewControllers.count == 0) {
+        [self adjustScrollViewInsets:self];
+        
+        return;
+    }
+    
+    NSUInteger index = self.currentSelectedIndex;
+    
+    if (self.currentSelectedIndex == -1) {
+        index = 0;
+    }
+    
+    [self adjustScrollViewInsets:self.viewControllers[index]];
+}
+
 - (void)adjustScrollViewInsets:(UIViewController *)viewController {
-	UIView *viewToCheck = viewController.view;
-	
-	if ([self sdc_displaysBannerAds]) {
-		// At this point, we know that the iAd framework has been linked, so sending originalContentView is safe
-		viewToCheck = [viewController performSelector:@selector(originalContentView)];
-	}
-	
-	if ([viewToCheck isKindOfClass:[UIScrollView class]] && viewController.automaticallyAdjustsScrollViewInsets) {
-		UIScrollView *scrollView = (UIScrollView *)viewToCheck;
-		UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
-		scrollView.contentInset = insets;
-		scrollView.scrollIndicatorInsets = insets;
-	}
+    
+    UIScrollView *scrollView;
+    
+    UIView *topView = viewController.view;
+    UIView *childView = nil;
+    UIView *secondLevelChildView = nil;
+    
+    if (![topView isKindOfClass:[UIScrollView class]]) {
+        
+        if (topView.subviews.count > 0) {
+            childView = topView.subviews[0];
+            
+            if (![childView isKindOfClass:[UIScrollView class]]) {
+            
+                if (childView.subviews.count > 0) {
+                    secondLevelChildView = childView.subviews[0];
+                    
+                    if ([secondLevelChildView isKindOfClass:[UIScrollView class]]) {
+                        scrollView = secondLevelChildView;
+                    }
+
+                }
+            } else {
+                scrollView = childView;
+            }
+            
+        }
+    } else {
+        scrollView = topView;
+    }
+    
+    
+    if (scrollView && self.viewControllers.count == 0) {
+    
+        viewController.automaticallyAdjustsScrollViewInsets = NO;
+        scrollView.contentInset = UIEdgeInsetsMake(20.0f + self.extraTopOffset, 0.0f, self.bottomLayoutGuide.length, 0.0f);
+        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f + self.extraScrollInset, 0.0f, self.bottomLayoutGuide.length, 0.0f);
+        
+        if (scrollView.contentOffset.y == 0) {
+            scrollView.contentOffset = CGPointMake(0.0f, (self.extraTopOffset + 20) * -1);
+        }
+        
+        return;
+    }
+    
+    viewController.automaticallyAdjustsScrollViewInsets = NO;
+    
+    CGPoint contentOffset = scrollView.contentOffset;
+
+    
+	if (scrollView) {
+        
+        NSLog(@"Start: %f offset: %f", scrollView.contentInset.top, scrollView.contentOffset.y);
+
+        NSUInteger index = [self.viewControllers indexOfObject:viewController];
+    
+        UIEdgeInsets scrollUnsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+        scrollUnsets.top += self.extraScrollInset;
+    
+        scrollView.scrollIndicatorInsets = scrollUnsets;
+        
+        UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+        insets.top += self.extraTopOffset;
+        
+        scrollView.contentInset = insets;
+        
+        if (self.lockContentOffset ||  scrollView.contentOffset.y == 0 || scrollView.contentInset.top == 0 || scrollView.contentInset.top == self.extraTopOffset) {
+            scrollView.contentOffset = CGPointMake(0.0f,  (-64.0f - self.extraTopOffset));
+        }
+  
+        NSLog(@"End: top: %f offset: %f", scrollView.contentInset.top, scrollView.contentOffset.y);
+    }
+}
+
+- (CGFloat)extraTopOffset
+{
+    return 0.0f;
+}
+
+- (CGFloat)extraScrollInset
+{
+    return 0.0f;
+}
+
+- (void)reset
+{
+    [self createSegmentedControl];
+    
+    _currentSelectedIndex = UISegmentedControlNoSegment;
+    _transitioningToSelectedIndex = NSNotFound;
+    
+    _viewControllers = [NSMutableArray array];
+    _segmentTitles = [NSMutableArray array];
+    _firstViewIndex = -1;
+    _hasAdjustedContentOffsetDict = [NSMutableDictionary dictionary];
 }
 
 - (void)moveControlToPosition:(SDCSegmentedViewControllerControlPosition)newPosition {
-	switch (newPosition) {
-		case SDCSegmentedViewControllerControlPositionNavigationBar:
-			self.navigationItem.titleView = self.segmentedControl;
-			break;
-		case SDCSegmentedViewControllerControlPositionToolbar: {
-			UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-			UIBarButtonItem *control = [[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl];
-			
-			self.toolbarItems = @[flexible, control, flexible];
-			break;
-		}
-	}
-	
-	if ([self.viewControllers count] > 0 && self.currentSelectedIndex != UISegmentedControlNoSegment)
-		[self updateBarsForViewController:self.viewControllers[self.segmentedControl.selectedSegmentIndex]];
+    
+    if (self.viewControllers.count <= 1) {
+        self.navigationItem.titleView = self.originalTitleView;
+    } else {
+        switch (newPosition) {
+            case SDCSegmentedViewControllerControlPositionNavigationBar:
+            {
+                self.navigationItem.titleView = self.segmentedControl;
+                
+                break;
+            }
+            case SDCSegmentedViewControllerControlPositionToolbar: {
+                UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+                UIBarButtonItem *control = [[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl];
+                
+                self.toolbarItems = @[flexible, control, flexible];
+                break;
+            }
+        }
+        
+    }
+    
+    if ([self.viewControllers count] > 0 && self.currentSelectedIndex != UISegmentedControlNoSegment)
+        [self updateBarsForViewController:self.viewControllers[self.segmentedControl.selectedSegmentIndex]];
 }
 
 - (void)updateBarsForViewController:(UIViewController *)viewController {
@@ -175,7 +356,7 @@
 		self.title = viewController.title;
 	else if (self.position == SDCSegmentedViewControllerControlPositionNavigationBar)
 		self.toolbarItems = viewController.toolbarItems;
-	
+    
 	self.navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems;
 	self.navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems;
 }
@@ -197,17 +378,41 @@
 
 - (void)addViewController:(UIViewController *)viewController withTitle:(NSString *)title {
 	[self.viewControllers addObject:viewController];
-	[self.titles addObject:title];
+	[self.segmentTitles addObject:title];
 	[self addChildViewController:viewController];
-	
-	[self.segmentedControl insertSegmentWithTitle:title atIndex:[self.titles indexOfObject:title] animated:YES];
-	[self resizeSegmentedControl];
+    
+    NSUInteger index = self.viewControllers.count - 1;
+    [UIView setAnimationsEnabled:NO];
+	[self.segmentedControl insertSegmentWithTitle:self.segmentTitles[index] atIndex:index animated:NO];
+    [self resizeSegmentedControl];
+    [UIView setAnimationsEnabled:YES];
 }
+
+//- (void)updateSegmentedControl
+//{
+//    [UIView setAnimationsEnabled:NO];
+//    [self createSegmentedControl];
+//    
+//    [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [self.segmentedControl insertSegmentWithTitle:viewController.title atIndex:idx animated:NO];
+//    }];
+//    
+//    self.navigationItem.titleView = self.segmentedControl;
+//    
+//    [self resizeSegmentedControl];
+//    self.segmentedControl.selectedSegmentIndex = self.currentSelectedIndex;
+//    
+//    [UIView setAnimationsEnabled:YES];
+//    
+//}
 
 #pragma mark - View Controller Transitioning
 
 - (void)showFirstViewController {
-	UIViewController *firstViewController = [self.viewControllers firstObject];
+    if (self.firstViewIndex == -1) {
+        self.firstViewIndex = 0;
+    }
+	UIViewController *firstViewController = self.viewControllers[self.firstViewIndex];
 	[self.view addSubview:firstViewController.view];
 	
 	[self willTransitionToViewController:firstViewController];
@@ -215,13 +420,13 @@
 }
 
 - (void)switchViewControllerWithSwipe:(UISwipeGestureRecognizer *)sender {
-	if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-		if (self.currentSelectedIndex < [self.viewControllers count] - 1)
-			[self transitionToViewControllerWithIndex:self.currentSelectedIndex + 1];
-	} else {
-		if (self.currentSelectedIndex > 0)
-			[self transitionToViewControllerWithIndex:self.currentSelectedIndex - 1];
-	}
+    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+        if (self.currentSelectedIndex < [self.viewControllers count] - 1)
+            [self transitionToViewControllerWithIndex:self.currentSelectedIndex + 1];
+    } else {
+        if (self.currentSelectedIndex > 0)
+            [self transitionToViewControllerWithIndex:self.currentSelectedIndex - 1];
+    }
 }
 
 - (void)willTransitionToViewController:(UIViewController *)viewController {
@@ -232,7 +437,13 @@
 	}
 	
 	viewController.view.frame = self.view.frame;
-	[self adjustScrollViewInsets:viewController];
+    
+    self.transitioningToSelectedIndex = [self.viewControllers indexOfObject:viewController];
+    [self fixViewControllerScrollOffset:viewController];
+    [self adjustScrollViewInsets:viewController];
+    
+    if ([self.delegate respondsToSelector:@selector(segmentedViewController:willTransitionToViewController:)])
+        [self.delegate segmentedViewController:self willTransitionToViewController:viewController];
 }
 
 - (void)didTransitionToViewController:(UIViewController *)viewController {
@@ -241,15 +452,27 @@
 	[self observeViewController:viewController];
 	
 	self.segmentedControl.selectedSegmentIndex = [self.viewControllers indexOfObject:viewController];
-	self.currentSelectedIndex = [self.viewControllers indexOfObject:viewController];
-	
-	if ([self.delegate respondsToSelector:@selector(segmentedViewController:didTransitionToViewController:)])
-		[self.delegate segmentedViewController:self didTransitionToViewController:viewController];
+    self.currentSelectedIndex = [self.viewControllers indexOfObject:viewController];
+    
+    [self viewControllerHasLoaded:viewController];
+    self.transitioningToSelectedIndex = NSNotFound;
+    
+    if ([self.delegate respondsToSelector:@selector(segmentedViewController:didTransitionToViewController:)])
+        [self.delegate segmentedViewController:self didTransitionToViewController:viewController];
 }
 
 - (void)transitionToViewControllerWithIndex:(NSUInteger)index {
-	UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
+    UIViewController *oldViewController = self.viewControllers[self.currentSelectedIndex];
 	UIViewController *newViewController = self.viewControllers[index];
+    
+    if (!oldViewController) {
+        return;
+    }
+    
+    if (!newViewController) {
+        return;
+    }
+    
 	
 	[self willTransitionToViewController:newViewController];
 	[self transitionFromViewController:oldViewController
@@ -302,27 +525,79 @@
 	[self resizeSegmentedControl];
 }
 
-@end
 
-@implementation UIViewController (SDCiAdSupport)
+#pragma mark - Loaded View Controllers
 
-- (BOOL)sdc_displaysBannerAds {
-	SEL selector = NSSelectorFromString(@"canDisplayBannerAds");
-	
-	if ([self respondsToSelector:selector]) {
-		NSMethodSignature *methodSignature = [[self class] instanceMethodSignatureForSelector:selector];
-		NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-		[invocation setSelector:selector];
-		[invocation setTarget:self];
-		[invocation invoke];
-		
-		BOOL canDisplayAds;
-		[invocation getReturnValue:&canDisplayAds];
-		
-		return canDisplayAds;
-	}
-	
-	return NO;
+- (void)viewControllerHasLoaded:(UIViewController *)viewController
+{
+    if ([self.loadedViewControllers containsObject:viewController]) {
+        return;
+    }
+    
+    [self.loadedViewControllers addObject:viewController];
+    
+}
+
+
+#pragma mark - Offset Fix
+
+- (void)fixViewControllerScrollOffset:(UIViewController *)viewController
+{
+    if ([self.loadedViewControllers containsObject:viewController]) {
+        return;
+    }
+    
+    if (self.viewControllers.count == 0) {
+        return;
+    }
+    
+    UIScrollView *scrollView;
+    
+    UIView *topView = viewController.view;
+    UIView *childView = nil;
+    UIView *secondLevelChildView = nil;
+    
+    if (![topView isKindOfClass:[UIScrollView class]]) {
+        
+        if (topView.subviews.count > 0) {
+            childView = topView.subviews[0];
+            
+            if (![childView isKindOfClass:[UIScrollView class]]) {
+                
+                if (childView.subviews.count > 0) {
+                    secondLevelChildView = childView.subviews[0];
+                    
+                    if ([secondLevelChildView isKindOfClass:[UIScrollView class]]) {
+                        scrollView = secondLevelChildView;
+                    }
+                    
+                }
+            } else {
+                scrollView = childView;
+            }
+            
+        }
+    } else {
+        scrollView = topView;
+    }
+    
+    if (scrollView) {;
+        [scrollView scrollRectToVisible:CGRectMake(0.0f, 0.0f, 1.0f, 1.0f) animated:NO];
+    }
+}
+
+
+#pragma mark - Segmented Control Methods
+
+- (void)selectViewControllerWithIndex:(NSInteger)index
+{
+    if (self.view.window) {
+        
+        self.segmentedControl.selectedSegmentIndex = index;
+        [self changeViewController:self.segmentedControl];
+    } else {
+        _firstViewIndex = index;
+    }
 }
 
 @end
